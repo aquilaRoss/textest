@@ -1,4 +1,220 @@
-\documentclass{article}
+\documentclass[12pt]{article}
+
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\usepackage{longtable}
+\usepackage{tocloft}
+\usepackage{xcolor}
+\usepackage{titlesec}
+
+% make sure tables don't have EXTRA padding
+\setlength{\tabcolsep}{0pt}
+
+% used to get the Centered Text in the Column of a Table.
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% used to get the full screen background image stuff to work
+\newcommand\SetBackgroundImage[1]{%
+  \AddToShipoutPictureBG*{%
+    \put(0,0){%
+      \parbox[b][\paperheight]{\paperwidth}{%
+        \vfill
+        \centering
+        \includegraphics[width=\paperwidth,height=\paperheight]{#1}%
+        \vfill
+      }%
+    }%
+  }%
+}
+
+% used to get the full screen background image stuff to work
+\newcommand\ClearBackgroundImage{%
+  \ClearShipoutPictureBG
+}
+
+% Define a custom command for subsubsubsection
+% these are NOT sections, but should allow us to play with headings and suchlike.
+\usepackage{xcolor} % optional, for color
+\newcommand{\subsubsubsection}[1]{%
+  \vspace{1em} % vertical space before
+  \noindent\textbf{\small #1}\par
+  \vspace{0.5em} % vertical space after
+}
+
+
+\input{formatting_TOC}
+
+
+
+
+
+
+
+
+
+
+\makeindex
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{POC Document}
+\rhead{\thepage}
+
 \begin{document}
-Hello, world! This is a test. another! Eduardo was here. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\newpage
+\newpage
+\newpage
+\newpage
+\newpage
+\newpage
+\newpage
+\newpage
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\input{titlePage}	\newpage
+%\input{contents}		\newpage
+%\input{skilltable}	\newpage
+%\input{races}		\newpage
+
+\newpage
+\newpage
+
+%
+%\section{Backgrounds}
+%\input{birthplaces}
+%
+
+
+\subsection{Stages of development}
+\subsubsection{Bloodline}
+\subsubsection{Upbringing}
+\subsubsection{Adolescence}
+\subsubsection{Heritage}
+\subsubsection{Development Table}
+\subsection{Stages of development}
+\subsubsection{Arcane Education}
+\subsubsection{Bastion of Arms}
+\section{Professions}
+\subsection{Bounty Hunter}
+\subsection{Hunter}
+\subsection{Journeyman Craftsman}
+\section{Perks and Flaws}
+\subsection{Perks}
+\subsubsection{A -> E}
+\subsubsubsection{Accelerated Healing}
+\subsubsubsection{Armour Proficiency – Heavy}
+\subsubsection{F -> H}
+\subsubsubsection{Fast Healer}
+\subsubsubsection{Great Marksman}
+\subsubsection{I -> Z}
+\subsubsubsection{Opportunist}
+\subsubsubsection{Opportune Attacker}
+\subsection{Flaws}
+\subsubsection{A -> Z}
+\subsubsubsection{Bad Reputation}
+\subsubsubsection{Easily Goaded}
+
+\section{Magic and Faith}
+
+
+\section{Spells and Runes}
+\subsection{Defensive}
+\subsubsection{Book of Healing}
+\subsubsubsection{Salvation}
+\subsection{Offensive}
+\subsubsection{Book of Air}
+\subsubsubsection{Chain Lightning}
+\subsection{Runes}
+\subsubsubsection{Anvil}
+\subsubsubsection{Striking}
+
+
+
+
+
+\section{Equipment}
+\section{Combat}
+\section{Gods and Religion}
+
+
+
+
+
+
+
+
+
+
+\newpage
+\newpage
+
+	
+\newpage
+
+% --- Include sections here ---
+
+\newpage
+\newpage
+\newpage
+\printindex
+
 \end{document}

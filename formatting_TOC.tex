@@ -1,0 +1,45 @@
+\setcounter{secnumdepth}{-1} % Disable numbering for all section levels
+\setcounter{tocdepth}{3}     % Show sections, subsections, subsubsections in TOC
+
+% Remove numbers from TOC entries:
+\usepackage{tocloft}
+\renewcommand{\cftsecaftersnum}{}       % Remove section numbers in TOC
+\renewcommand{\cftsubsecaftersnum}{}    % Remove subsection numbers in TOC
+\renewcommand{\cftsubsubsecaftersnum}{} % Remove subsubsection numbers in TOC
+
+% Adjust indentation for TOC entries
+\setlength{\cftsecindent}{0pt}          % Section indent (usually zero)
+\setlength{\cftsubsecindent}{0.5em}     % Subsection indent
+\setlength{\cftsubsubsecindent}{1em}    % Subsubsection indent
+
+% Optionally adjust the width reserved for numbers (to zero, since no numbers)
+\setlength{\cftsecnumwidth}{0pt}
+\setlength{\cftsubsecnumwidth}{0pt}
+\setlength{\cftsubsubsecnumwidth}{0pt}
+
+% "Style" Macros used to be the "one" place where colour and stuff like that is set for titles, subtitles and all the levels we need.
+
+% === BASE TITLE LEVEL MACROS ===
+\newcommand{\CustomTitleLevelOne}[1]{\section*{\textcolor{blue!80!black}{\sffamily\Large #1}}}
+\newcommand{\CustomTitleLevelTwo}[1]{\subsection*{\textcolor{teal!80!black}{\sffamily\large #1}}}
+\newcommand{\CustomTitleLevelThree}[1]{\subsubsection*{\textcolor{gray!70!black}{\sffamily\normalsize #1}}}
+
+% === SEMANTIC WRAPPER MACROS ===
+\newcommand{\RaceTitle}[1]{\CustomTitleLevelOne{#1}}
+\newcommand{\ClassTitle}[1]{\CustomTitleLevelOne{#1}}
+\newcommand{\MonsterTitle}[1]{\CustomTitleLevelOne{#1}}
+
+\newcommand{\SubclassTitle}[1]{\CustomTitleLevelTwo{#1}}
+\newcommand{\AbilityTitle}[1]{\CustomTitleLevelThree{#1}}
+
+% === OTHER FORMATTING MACROS ===
+\newcommand{\Keyword}[1]{\textbf{\textsc{#1}}}
+\newcommand{\Trait}[2]{\textbf{#1} — #2\\}
+
+
+
+
+
+
+
+
