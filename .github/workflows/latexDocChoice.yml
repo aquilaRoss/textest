@@ -7,6 +7,10 @@ on:
         description: 'LaTeX root file to compile'
         required: true
         default: 'main.tex'
+        type: choice
+        options:
+          - main.tex
+          - poc/racemacro.tex
 
 jobs:
   build:
@@ -17,8 +21,14 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: ${{ github.event.inputs.tex_file }}
+      - name: Prepare PDF artifact
+        run: |
+          TEX_FILE="${{ github.event.inputs.tex_file }}"
+          BASENAME=$(basename "$TEX_FILE" .tex)
+          mv "$BASENAME.pdf" "$BASENAME.pdf"
+      
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
           name: pdf
-          path: ${{ github.event.inputs.tex_file }}.pdf
+          path: ${{ github.event.inputs.tex_file | basename | replace('.tex','.pdf') }}
