@@ -35,7 +35,7 @@ jobs:
           # Optional: you can specify output directory or extra arguments if needed
 
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: compiled-pdf
           path: ${{ env.PDF_FILE }}
