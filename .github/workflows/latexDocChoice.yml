@@ -33,3 +33,9 @@ jobs:
         with:
           root_file: ${{ github.event.inputs.tex_file }}
           # Optional: you can specify output directory or extra arguments if needed
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: compiled-pdf
+          path: ${{ env.PDF_FILE }}
