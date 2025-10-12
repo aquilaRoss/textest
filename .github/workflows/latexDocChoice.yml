@@ -1,4 +1,4 @@
-name: Build LaTeX document (withChoice)(usingDocker)
+name: Build LaTeX document (withChoice) (usingDocker)
 
 on:
   workflow_dispatch:
