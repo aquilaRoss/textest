@@ -1,34 +1,34 @@
-name: Build LaTeX document (withChoice) (usingDocker)
+name: Build LaTeX PDF
 
 on:
   workflow_dispatch:
     inputs:
       tex_file:
-        description: 'LaTeX root file to compile'
+        description: "Select the LaTeX file to build"
         required: true
-        default: 'main.tex'
         type: choice
         options:
           - main.tex
           - poc/racemacro.tex
+        default: main.tex
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Compile LaTeX
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: ${{ github.event.inputs.tex_file }}
-      - name: Prepare PDF artifact
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set PDF filename
         run: |
-          TEX_FILE="${{ github.event.inputs.tex_file }}"
-          BASENAME=$(basename "$TEX_FILE" .tex)
-          mv "$BASENAME.pdf" "$BASENAME.pdf"
-      
-      - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: pdf
-          path: ${{ github.event.inputs.tex_file | basename | replace('.tex','.pdf') }}
+          # Strip path (if any) and change .tex to .pdf
+          PDF_FILE=$(basename "${{ github.event.inputs.tex_file }}" .tex).pdf
+          echo "PDF_FILE=$PDF_FILE" >> $GITHUB_ENV
+
+      - name: Show PDF filename
+        run: echo "PDF will be saved as $PDF_FILE"
+
+      - name: Build LaTeX document
+        run: |
+          pdflatex -interaction=nonstopmode "${{ github.event.inputs.tex_file }}"
+          echo "Built $PDF_FILE"
