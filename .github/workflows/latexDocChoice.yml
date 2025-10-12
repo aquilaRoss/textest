@@ -21,14 +21,15 @@ jobs:
 
       - name: Set PDF filename
         run: |
-          # Strip path (if any) and change .tex to .pdf
+          # Strip path and change .tex to .pdf
           PDF_FILE=$(basename "${{ github.event.inputs.tex_file }}" .tex).pdf
           echo "PDF_FILE=$PDF_FILE" >> $GITHUB_ENV
 
       - name: Show PDF filename
         run: echo "PDF will be saved as $PDF_FILE"
 
-      - name: Build LaTeX document
-        run: |
-          pdflatex -interaction=nonstopmode "${{ github.event.inputs.tex_file }}"
-          echo "Built $PDF_FILE"
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: ${{ github.event.inputs.tex_file }}
+          # Optional: you can specify output directory or extra arguments if needed
