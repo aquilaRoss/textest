@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+
+\usepackage{pgfkeys}    % key=value parsing
+\usepackage{pgffor}     % \foreach
+\usepackage{hyperref}   % links
+\usepackage{makeidx}    % index
+\usepackage{enumitem}   % list control
+
+\makeindex
+
+% ----------------------------
+% Perk registration
+% ----------------------------
+% \Perk{<Display Name>}{<key>}  key = label-safe (letters, digits, underscores)
+\newcommand{\Perk}[2]{%
+  \expandafter\gdef\csname perkname@#2\endcsname{#1}%
+  \subsubsection*{#1}%
+  \label{perk:#2}%
+  \index{Perks!#1}%
+}
+
+% ----------------------------
+% RaceEntry key-value setup
+% ----------------------------
+\pgfkeys{
+  /Race/.is family, /Race,
+  title/.estore in = \RaceTitle,
+  quote/.estore in = \RaceQuote,
+  appearance/.estore in = \RaceAppearance,
+  stats/.estore in = \RaceStats,
+  perks/.estore in = \RacePerks
+}
+
+% ----------------------------
+% RaceEntry macro
+% ----------------------------
+\newcommand{\RaceEntry}[1]{%
+  \pgfkeys{/Race,#1}% parse key=value
+  %
+  \section*{\RaceTitle}
+  \addcontentsline{toc}{section}{\RaceTitle}
+  %
+  \textit{\RaceQuote}\par\vspace{1em}
+  %
+  \textbf{Appearance:} \RaceAppearance\par\vspace{0.5em}
+  %
+  \textbf{Stats:} \RaceStats\par\vspace{0.5em}
+  %
+  \ifx\RacePerks\empty
+  \else
+    \textbf{Perks:}
+    \begin{itemize}[leftmargin=*]
+      \foreach \p in \RacePerks {%
+        % remove leading/trailing spaces manually if needed
+        \edef\thisperk{\p}%
+        \item \hyperref[perk:\thisperk]{\csname perkname@\thisperk\endcsname} (p.~\pageref{perk:\thisperk})
+      }%
+    \end{itemize}
+  \fi
+  \newpage
+}
+
+% ----------------------------
+% Document
+% ----------------------------
+\begin{document}
+
+\tableofcontents
+\newpage
+
+% ----------------------------
+% Define perks
+% ----------------------------
+\Perk{Keen Senses}{keen_senses}
+\Perk{Night Vision}{night_vision}
+\Perk{Stonecunning}{stonecunning}
+\Perk{Resilient}{resilient}
+
+\newpage
+
+% ----------------------------
+% Example Races
+% ----------------------------
+\RaceEntry{
+  title=Elves,
+  quote={Graceful and wise, yet always watchful.},
+  appearance={Tall and slender with pointed ears and elegant features.},
+  stats={Dexterity +2, Intelligence +1},
+  perks={keen_senses,night_vision}
+}
+
+\RaceEntry{
+  title=Dwarves,
+  quote={Stout and strong, masters of stone and metal.},
+  appearance={Short, stocky, with long beards and rugged features.},
+  stats={Constitution +2, Strength +1},
+  perks={stonecunning,resilient}
+}
+
+\newpage
+\printindex
+
+\end{document}
