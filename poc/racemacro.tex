@@ -12,10 +12,9 @@
 % Convert to lowercase and replace spaces with hyphens
 \newcommand{\NormalizeString}[1]{%
   \begingroup
-  \edef\temp{#1}%
-  \lowercase{\edef\temp{\temp}}% apply lowercase to the expansion
-  \StrSubstitute{\temp}{ }{-}[\temp]% replace spaces with hyphens
-  \temp
+    \edef\temp{\MakeLowercase{#1}}%
+    \StrSubstitute{\temp}{ }{-}[\temp]%
+    \temp
   \endgroup
 }
 
