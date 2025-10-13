@@ -1,0 +1,40 @@
+\documentclass{article}
+
+\input{MakeAnchorMakeLink_use}
+
+\usepackage{lipsum}   % For filler text
+
+\input{MakeAnchorMakeLink}
+
+\begin{document}
+
+\section{Introduction}
+
+If you get ?? Try "Making it twice"
+
+Here we will define some anchors and later link to them.
+
+\subsection{First Concept}
+
+We introduce the first concept called \textbf{My Concept One}.\MakeAnchor{My Concept One}
+
+\lipsum[1]
+\newpage
+
+\subsection{Second Concept}
+
+Another important idea is \textbf{Second Idea}.\MakeAnchor{Second Idea}
+
+\lipsum[2]
+\newpage
+
+\section{Referencing Concepts}
+
+We can link to the concepts we defined earlier:
+
+- Check \MakeLink{My Concept One} for details.  
+- See also \MakeLink{Second Idea}.
+
+\lipsum[3]
+
+\end{document}

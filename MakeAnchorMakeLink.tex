@@ -1,0 +1,16 @@
+% Helper to remove spaces (for MakeAnchor)
+\makeatletter
+\def\stripspaces#1{\zap@space#1 \@empty}
+\makeatother
+
+% MakeAnchor: create a label with normalized name
+\newcommand{\MakeAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+}
+
+% MakeLink: display text, link to page of the anchor
+\newcommand{\MakeLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})%
+}
