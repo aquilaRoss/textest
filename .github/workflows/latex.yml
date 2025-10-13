@@ -16,12 +16,9 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          # This will compile main.tex first, then MakeAnchorMakeLink_MRE.tex
           args: >
-            bash -c "
-              latexmk -pdf main.tex &&
-              latexmk -pdf MakeAnchorMakeLink_MRE.tex
-            "
+            latexmk -pdf main.tex &&
+            latexmk -pdf MakeAnchorMakeLink_MRE.tex
 
       # Upload both PDFs as artifacts
       - name: Upload PDF artifacts
