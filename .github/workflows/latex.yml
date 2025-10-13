@@ -1,30 +1,21 @@
-name: Build LaTeX documents (using Docker)
+name: Build LaTeX document (using Docker)
 
-on:
+on: 
   push:
     branches: [ "main" ]
   pull_request:
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      # Compile multiple LaTeX files in a single Docker session
-      - name: Compile LaTeX documents
+      - uses: actions/checkout@v4 
+      - name: Compile LaTeX 
         uses: xu-cheng/latex-action@v3
-        with:
-          root_file: main.tex
-          args: >
-            latexmk -pdf main.tex &&
-            latexmk -pdf MakeAnchorMakeLink_MRE.tex
+        with: root_file: main.tex
 
-      # Upload both PDFs as artifacts
-      - name: Upload PDF artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: pdf-artifacts
-          path: |
-            main.pdf
-            MakeAnchorMakeLink_MRE.pdf
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4 
+        with: 
+          name: main-pdf 
+          path: main.pdf
