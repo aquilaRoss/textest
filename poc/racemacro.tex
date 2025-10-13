@@ -5,8 +5,19 @@
 \usepackage{hyperref}   % links
 \usepackage{makeidx}    % index
 \usepackage{enumitem}   % list control
+\usepackage{xstring}    % lowercase and StrSubstitute in NormalizeString
 
 \makeindex
+
+% Convert to lowercase and replace spaces with hyphens
+\newcommand{\NormalizeString}[1]{%
+  \begingroup
+  \edef\temp{#1}%
+  \lowercase{\edef\temp{\temp}}%
+  \StrSubstitute{\temp}{ }{-}[\temp]%
+  \temp
+  \endgroup
+}
 
 % ----------------------------
 % Perk registration
@@ -66,6 +77,11 @@
 \begin{document}
 
 \tableofcontents
+\newpage
+
+should show "arcane-knowledge"
+\NormalizeString{Arcane Knowledge}
+
 \newpage
 
 % ----------------------------
