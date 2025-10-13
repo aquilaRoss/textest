@@ -12,7 +12,8 @@
 % Convert to lowercase and replace spaces with hyphens
 \newcommand{\NormalizeString}[1]{%
   \begingroup
-    \edef\temp{\MakeLowercase{#1}}%
+    \edef\temp{#1}%
+    \lowercase{\edef\temp{\temp}}%
     \StrSubstitute{\temp}{ }{-}[\temp]%
     \temp
   \endgroup
