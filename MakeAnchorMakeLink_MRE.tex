@@ -6,6 +6,12 @@
 
 \input{MakeAnchorMakeLink}
 
+
+% an example of its use inside a newcommand
+\newcommand{\MakeBoldAnchor}[1]{%
+  \textbf{#1}\MakeAnchor{#1}%
+}
+
 \begin{document}
 
 \section{Introduction}
@@ -28,12 +34,20 @@ Another important idea is \textbf{Second Idea}.\MakeAnchor{Second Idea}
 \lipsum[2]
 \newpage
 
+\subsection{Third Concept}
+
+Introducing a third idea called \MakeBoldAnchor{Third Concept}.
+
+\lipsum[3]
+\newpage
+
 \section{Referencing Concepts}
 
 We can link to the concepts we defined earlier:
 
 - Check \MakeLink{My Concept One} for details.  
 - See also \MakeLink{Second Idea}.
+- Oh Yea and don't forget the \MakeLink{Third Concept}.
 
 \lipsum[3]
 
