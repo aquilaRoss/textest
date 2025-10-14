@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\usepackage{longtable}      % for the table itself
+\usepackage{array}          % for \newcolumntype (centered text)
+
+\usepackage{lipsum}         % MRE ONLY
+
+% make sure tables don't have EXTRA padding
+\setlength{\tabcolsep}{0pt}
+
+% used to get the Centered Text in the Column of a Table.
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\begin{document}
+
+\begin{longtable}{%
+    >{\raggedright\arraybackslash}p{0.3\textwidth} % Left-aligned
+    C{0.2\textwidth}                               % Centered
+    p{0.5\textwidth}                               % Justified
+}
+\hline
+\textbf{Skill} & \textbf{Recommended Attributes} & \textbf{Description} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Skill} & \textbf{Recommended Attributes} & \textbf{Description} \\
+\hline
+\endhead
+
+\endfoot
+
+\hline
+\endlastfoot
+Acrobatics & Agility, Perception, Wisdom & \lipsum[1] \\
+Acting & Perception, Wisdom, Intelligence & \lipsum[2] \\
+Alchemy & Intelligence & \lipsum[3] \\
+Administration & Intelligence & \lipsum[4] \\
+Appraising & Wisdom, Intelligence & \lipsum[5] \\
+Astrology & Wisdom, Intelligence & \lipsum[6] \\
+Athletics & Agility, Wisdom, Strength, Constitution, Intelligence & \lipsum[7] \\
+Awareness & Perception & \lipsum[8] \\
+Bargain & Perception, Wisdom & \lipsum[9] \\
+Battle Surgery & Perception, Intelligence & \lipsum[10] \\
+Beast Riding & Agility, Wisdom & \lipsum[11] \\
+Building & Strength, Intelligence, Wisdom & \lipsum[12] \\
+Brawling - Unarmed & Agility, Strength & \lipsum[13] \\
+Cartography & Perception, Intelligence & \lipsum[14] \\
+Climbing & Agility, Strength, Constitution, Perception, Wisdom & \lipsum[15] \\
+\hline
+\end{longtable}
+
+\end{document}
