@@ -8,10 +8,10 @@
   \edef\tempa{\detokenize{#1}}%
   \edef\anchorname{\expandafter\stripspaces\tempa}%
   \label{\anchorname}%
-  \index{\#1}%
+  \index{#1}%
 }
 
 % MakeLink: display text, link to page of the anchor
 \newcommand{\MakeLink}[1]{%
-  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{\#1}%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{#1}%
 }
