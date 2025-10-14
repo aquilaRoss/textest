@@ -6,6 +6,9 @@
 
 \usepackage{lipsum}         % MRE ONLY
 
+\usepackage{makeidx}  % for the index
+\makeindex
+
 % make sure tables don't have EXTRA padding
 \setlength{\tabcolsep}{0pt}
 
@@ -50,5 +53,9 @@ Cartography & Perception, Intelligence & \lipsum[14] \\
 Climbing & Agility, Strength, Constitution, Perception, Wisdom & \lipsum[15] \\
 \hline
 \end{longtable}
+
+\newpage
+\section{Index}
+\printindex
 
 \end{document}
