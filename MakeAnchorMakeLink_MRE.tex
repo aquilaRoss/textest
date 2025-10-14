@@ -4,6 +4,9 @@
 
 \usepackage{lipsum}   % For filler text
 
+\usepackage{makeidx}  % for the index
+\makeindex
+
 \input{MakeAnchorMakeLink}
 
 
@@ -50,5 +53,9 @@ We can link to the concepts we defined earlier:
 - Oh Yea and don't forget the \MakeLink{Third Concept}.
 
 \lipsum[3]
+\newpage
+
+\section{Index}
+\printindex
 
 \end{document}
