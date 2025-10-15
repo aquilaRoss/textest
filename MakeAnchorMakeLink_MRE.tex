@@ -10,12 +10,6 @@
 
 \input{MakeAnchorMakeLink}
 
-
-% an example of its use inside a newcommand
-\newcommand{\MakeBoldAnchor}[1]{%
-  \textbf{#1}\MakeAnchor{#1}%
-}
-
 \begin{document}
 
 \section{Introduction}
@@ -43,7 +37,7 @@ Another important idea is \textbf{\MakeAnchor{Second Idea}}.
 
 \subsection{Third Concept}
 
-Introducing a third idea called \MakeBoldAnchor{Third Concept}.
+Introducing a third idea called \textbf{\MakeAnchor{Third Concept}}.
 
 \lipsum[3]
 \newpage
