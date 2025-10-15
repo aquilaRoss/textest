@@ -11,7 +11,20 @@
   \index{#1}%
 }
 
+% MakeSkillAnchor: create a label with normalized name
+\newcommand{\MakeSkillAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Skill!#1}%
+}
+
 % MakeLink: display text, link to page of the anchor
 \newcommand{\MakeLink}[1]{%
   #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{#1}%
+}
+
+% MakeSkillLink: display text, link to page of the anchor
+\newcommand{\MakeSkillLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Skill!#1}%
 }
