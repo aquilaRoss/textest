@@ -1,1 +1,10 @@
+% make sure tables don't have EXTRA padding
+\setlength{\tabcolsep}{0pt}
 
+% used to get the Centered Text in the Column of a Table.
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% Make the skill setup in the tex file look nicer.
+\newcommand{\SkillRow}[3]{%
+  \MakeSkillAnchor{#1} & #2 & #3 \\%
+}

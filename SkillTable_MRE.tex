@@ -2,6 +2,7 @@
 \usepackage[a4paper, margin=1.5cm]{geometry}
 
 \input{MakeAnchorMakeLink_use}
+\input{SkillTable_use}
 
 \usepackage{longtable}      % for the table itself
 \usepackage{array}          % for \newcolumntype (centered text)
@@ -12,38 +13,12 @@
 \makeindex
 
 \input{MakeAnchorMakeLink}
+\input{SkillTable}
 
-% make sure tables don't have EXTRA padding
-\setlength{\tabcolsep}{0pt}
-
-% used to get the Centered Text in the Column of a Table.
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
-
-\newcommand{\SkillRow}[3]{%
-  \MakeSkillAnchor{#1} & #2 & #3 \\%
-}
 
 \begin{document}
 
-\begin{longtable}{%
-    >{\raggedright\arraybackslash}p{0.3\textwidth} % Left-aligned
-    C{0.2\textwidth}                               % Centered
-    p{0.5\textwidth}                               % Justified
-}
-\hline
-\textbf{Skill} & \textbf{Recommended Attributes} & \textbf{Description} \\
-\hline
-\endfirsthead
-
-\hline
-\textbf{Skill} & \textbf{Recommended Attributes} & \textbf{Description} \\
-\hline
-\endhead
-
-\endfoot
-
-\hline
-\endlastfoot
+\input{SkillTable_header}
 Acrobatics\index{Acrobatics} & Agility, Perception, Wisdom & \lipsum[1] \\
 \MakeSkillAnchor{Acting} & Perception, Wisdom, Intelligence & \lipsum[2] \\
 \SkillRow{Alchemy}{Intelligence}{\lipsum[3]}
@@ -59,8 +34,7 @@ Building & Strength, Intelligence, Wisdom & \lipsum[12] \\
 Brawling - Unarmed & Agility, Strength & \lipsum[13] \\
 Cartography & Perception, Intelligence & \lipsum[14] \\
 Climbing & Agility, Strength, Constitution, Perception, Wisdom & \lipsum[15] \\
-\hline
-\end{longtable}
+\input{SkillTable_footer}
 
 \newpage
 \printindex
