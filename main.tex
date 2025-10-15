@@ -1,6 +1,9 @@
 \documentclass[12pt]{article}
-
 \usepackage[a4paper, margin=1.5cm]{geometry}
+
+\input{MakeAnchorMakeLink_use}
+\input{SkillTable_use}
+
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{ragged2e}
@@ -20,13 +23,6 @@
 \usepackage{tocloft}
 \usepackage{xcolor}
 \usepackage{titlesec}
-\input{MakeAnchorMakeLink_use}
-
-% make sure tables don't have EXTRA padding
-\setlength{\tabcolsep}{0pt}
-
-% used to get the Centered Text in the Column of a Table.
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
 % used to get the full screen background image stuff to work
 \newcommand\SetBackgroundImage[1]{%
@@ -58,6 +54,9 @@
 
 
 \input{MakeAnchorMakeLink}
+\input{SkillTable}
+
+
 
 \input{formatting_TOC}
 
