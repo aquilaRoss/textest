@@ -19,6 +19,10 @@
 % used to get the Centered Text in the Column of a Table.
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
+\newcommand{\SkillRow}[3]{%
+  \MakeSkillAnchor{#1} & #2 & #3 \\%
+}
+
 \begin{document}
 
 \begin{longtable}{%
@@ -42,7 +46,7 @@
 \endlastfoot
 Acrobatics\index{Acrobatics} & Agility, Perception, Wisdom & \lipsum[1] \\
 \MakeSkillAnchor{Acting} & Perception, Wisdom, Intelligence & \lipsum[2] \\
-Alchemy & Intelligence & \lipsum[3] \\
+\SkillRow{Alchemy}{Intelligence}{\lipsum[3]}
 Administration & Intelligence & \lipsum[4] \\
 Appraising & Wisdom, Intelligence & \lipsum[5] \\
 Astrology & Wisdom, Intelligence & \lipsum[6] \\
