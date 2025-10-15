@@ -4,9 +4,6 @@
 \input{MakeAnchorMakeLink_use}
 \input{SkillTable_use}
 
-\usepackage{longtable}      % for the table itself
-\usepackage{array}          % for \newcolumntype (centered text)
-
 \usepackage{lipsum}         % MRE ONLY
 
 \usepackage{makeidx}  % for the index
@@ -18,7 +15,25 @@
 
 \begin{document}
 
-\input{SkillTable_header}
+\begin{longtable}{%
+    >{\raggedright\arraybackslash}p{0.3\textwidth} % Left-aligned
+    C{0.2\textwidth}                               % Centered
+    p{0.5\textwidth}                               % Justified
+}
+\hline
+\textbf{Skill} & \textbf{Recommended Attributes} & \textbf{Description} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Skill} & \textbf{Recommended Attributes} & \textbf{Description} \\
+\hline
+\endhead
+
+\endfoot
+
+\hline
+\endlastfoot
 Acrobatics\index{Acrobatics} & Agility, Perception, Wisdom & \lipsum[1] \\
 \MakeSkillAnchor{Acting} & Perception, Wisdom, Intelligence & \lipsum[2] \\
 \SkillRow{Alchemy}{Intelligence}{\lipsum[3]}
@@ -34,7 +49,8 @@ Building & Strength, Intelligence, Wisdom & \lipsum[12] \\
 Brawling - Unarmed & Agility, Strength & \lipsum[13] \\
 Cartography & Perception, Intelligence & \lipsum[14] \\
 Climbing & Agility, Strength, Constitution, Perception, Wisdom & \lipsum[15] \\
-\input{SkillTable_footer}
+\hline
+\end{longtable}
 
 \newpage
 \printindex
