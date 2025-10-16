@@ -1,17 +1,7 @@
 % Helper to remove spaces (for MakeAnchor)
 \makeatletter
-\newcommand{\StripSpaces}[1]{%
-  \begingroup
-  \edef\x{\endgroup\zap@space#1 \empty}%
-  \x
-}
+\def\stripspaces#1{\zap@space#1 \@empty}
 \makeatother
-
-% Common function to normalize a name to a label-safe format
-\newcommand{\MakeLabelName}[1]{%
-  \edef\tempa{\detokenize{#1}}%
-  \StripSpaces{\tempa}%
-}
 
 % MakeAnchor: create a label with normalized name
 \newcommand{\MakeAnchor}[1]{%
@@ -31,7 +21,8 @@
 
 % MakePerkAnchor: create a label with normalized name
 \newcommand{\MakePerkAnchor}[1]{%
-  \edef\anchorname{\MakeLabelName{#1}}%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
   \label{\anchorname}%
   \index{Perk!#1}#1%
 }
@@ -48,6 +39,10 @@
 
 % MakePerkLink: display text, link to page of the anchor
 \newcommand{\MakePerkLink}[1]{%
-  \edef\anchorname{\MakeLabelName{#1}}%
+  \begingroup
+    \edef\tempa{\detokenize{#1}}%
+    \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \endgroup
   #1 (P.\pageref{\anchorname})\index{Perk!#1}%
 }
+
