@@ -4,6 +4,12 @@
 \usepackage{multicol}   % so we can do the perks as two columns
 
 \input{MakeAnchorMakeLink_use}
+
+
+\newcommand{\MakePerkLink_Other}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
+}
+
 \input{SkillTable_use}
 \input{Perk_use}
 
@@ -83,6 +89,14 @@
 \textbf{Cost:} 3 XP
 
 \medskip
+
+will this work - \MakePerkLink{Gearhead}
+
+will this work - \MakePerkLink{Toughness}
+
+will this work - \MakePerkLink_Other{Gearhead}
+
+will this work - \MakePerkLink_Other{Toughness}
 
 \subsection*{\MakePerkAnchor{Martial Mastery}}
 \textbf{Pre-Requisites (Level 1):} \MakeSkillLink{Melee Weapons} 8, Strength 6\\
