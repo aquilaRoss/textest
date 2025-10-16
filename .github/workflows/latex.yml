@@ -10,20 +10,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compile LaTeX
+
+      - name: Compile LaTeX - main
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
         
-      - name: Compile LaTeX
+      - name: Compile LaTeX - Link MRE
         uses: xu-cheng/latex-action@v3
         with:
           root_file: MakeAnchorMakeLink_MRE.tex
         
-      - name: Compile LaTeX
+      - name: Compile LaTeX - Skill MRE
         uses: xu-cheng/latex-action@v3
         with:
           root_file: SkillTable_MRE.tex
+        
+      - name: Compile LaTeX - Perk MRE
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: Perk_MRE.tex
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4

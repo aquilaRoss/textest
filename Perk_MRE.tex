@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+
+\input{MakeAnchorMakeLink_use}
+\input{SkillTable_use}
+\input{Perk_use}
+
+\usepackage{lipsum}         % MRE ONLY
+
+\usepackage{makeidx}  % for the index
+\makeindex
+
+\input{MakeAnchorMakeLink}
+\input{SkillTable}
+\input{Perk}
+
+\begin{document}
+
+
+\newpage
+\section{Skills Table}
+
+This table is here so we can use it and link to it as a pre-req.
+
+\begin{longtable}{%
+    >{\raggedright\arraybackslash}p{0.3\textwidth} % Left-aligned
+    C{0.2\textwidth}                               % Centered
+    p{0.5\textwidth}                               % Justified
+}
+\hline
+\textbf{Skill} & \textbf{Recommended Attributes} & \textbf{Description} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Skill} & \textbf{Recommended Attributes} & \textbf{Description} \\
+\hline
+\endhead
+\endfoot
+\hline
+\endlastfoot
+\SkillRow{Acrobatics}{Agility, Perception, Wisdom}{\lipsum[1]}
+\SkillRow{Acting}{Perception, Wisdom, Intelligence}{\lipsum[2]}
+\hline
+\end{longtable}
+
+\newpage
+\printindex
+
+\end{document}
