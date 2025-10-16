@@ -1,5 +1,12 @@
+% --- Define defaults for all fields ---
+\makeatletter
+\newcommand{\perk@name}{}
+\newcommand{\perk@prereq}{}
+\newcommand{\perk@effect}{}
+\newcommand{\perk@cost}{}
+\makeatother
 
-% Define keys
+% --- Define key family ---
 \pgfkeys{
   /perk/.is family, /perk,
   name/.estore in = \perk@name,
@@ -8,14 +15,23 @@
   cost/.estore in = \perk@cost,
 }
 
+% --- Define PerkEntry command ---
 \makeatletter
-% The main perk command
 \newcommand{\PerkEntry}[1]{%
+  % Reset values to empty before loading new keys
+  \renewcommand{\perk@name}{}%
+  \renewcommand{\perk@prereq}{}%
+  \renewcommand{\perk@effect}{}%
+  \renewcommand{\perk@cost}{}%
+  %
   \pgfkeys{/perk,#1}%
+  %
+  % Safe expansion for MakePerkAnchor
   \begingroup
     \edef\tempname{\perk@name}%
     \subsection*{\MakePerkAnchor{\tempname}}%
   \endgroup
+  %
   \ifx\perk@prereq\@empty\else
     \textbf{Pre-Requisites:} \perk@prereq\\%
   \fi
