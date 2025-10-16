@@ -22,34 +22,77 @@
 \section{Perks}
 \begin{multicols}{2}
 
-Lets start with some hard coded examples. We can then expand from there.
-We need to cover something that has Level's, and Pre-Req's as well as Adding a new MakeAnchor and a MakeLink for the perks
+\subsection*{Toughness}
+\textbf{Pre-Requisites:} Strength 5\\
+\textbf{Effect:} Gain +2 HP per level.\\
+\textbf{Cost per Level:} 3 XP
 
-Accurate
-Pre-Requisite: Perception 5
-Effect: You are a master of precision and can hit targets that others would deem impossible. With this perk, you reduce the Target Numbers (TN) to hit with any Missile Weapon by 1. This allows you to land shots with a level of accuracy that most people could never hope to achieve. However, this perk does not apply when the Target Number is already 6 or lower.
-Cost: 8
+\medskip
 
-Administrator
-Pre-Requisite: None
-Effect: You possess an exceptional ability to manage records, documents, and legal affairs. With this perk, you gain proficiency in administration tasks such as sorting, organizing, and maintaining important documents or data. Specifically, this perk reduces the Target Numbers (TN) for all skill rolls related to Administration, Document Investigation, and Law by 1.
-Cost: 5
+\subsection*{Weapon Focus (Melee)}
+\textbf{Pre-Requisites:} Any Melee Skill at 6\\
+\textbf{Effect:} +1 to attack rolls with chosen melee weapon.\\
+\textbf{Cost:} 4 XP
 
-Arcane Master
-Pre-Requisite: Rune Magic Rank 7.
-Effect: Your extensive practice and mastery of rune magic grant you unparalleled precision. You gain +1 Automatic Success (A/S) to your Rune Strength roll when casting a Battle Rune. This reflects your superior ability to channel and control magical energy in combat scenarios. 
-Cost: 5
+\medskip
 
-Armour Proficiency Heavy
-Pre-Requisite: Constitution 5
+\subsection*{Sharpshooter}
+\textbf{Pre-Requisites:} Firearms 8, Perception 7\\
+\textbf{Effect:} Ignore −2 penalty for long-range attacks.\\
+\textbf{Cost:} 6 XP
 
-Level 1: Rigorous training allows you to wear Heavy Armour as though it were a natural extension of your body. Grants a -2 Target Number (TN) reduction for mobility checks when wearing Heavy Armour. Mobility TN cannot drop below 7.
+\medskip
 
-Level 2: Further mastery provides an additional -1 TN reduction for mobility checks. Cumulative TN reduction is now -3 TN, capped at a minimum of 7.
+\subsection*{Silver Tongue}
+\textbf{Pre-Requisites:} Persuasion 6, Charisma 6\\
+\textbf{Effect:} Once per scene, reroll a failed social test.\\
+\textbf{Cost:} 5 XP
 
-Level 3: Advanced expertise offers yet another -1 TN reduction for mobility checks. Cumulative TN reduction is now -4 TN, still capped at a minimum of 7.
+\medskip
 
-Cost: 6 per level 
+\subsection*{Gearhead}
+\textbf{Pre-Requisites:} Mechanics 5, Intelligence 5\\
+\textbf{Effect:} Reduce crafting time by 25\%.\\
+\textbf{Cost:} 3 XP
+
+\medskip
+
+\subsection*{Night Stalker}
+\textbf{Pre-Requisites:} Stealth 6, Dexterity 6\\
+\textbf{Effect:} Gain +2 to Stealth tests made in darkness.\\
+\textbf{Cost:} 4 XP
+
+\medskip
+
+\subsection*{Born Leader}
+\textbf{Pre-Requisites:} Character Creation Only, Charisma 7\\
+\textbf{Effect:} Allies within 10 m gain +1 Morale bonus.\\
+\textbf{Cost:} Free (at creation)
+
+\medskip
+
+\subsection*{Arcane Initiate}
+\textbf{Pre-Requisites:} GM Permission, Intelligence 6\\
+\textbf{Effect:} Gain access to basic spellcasting.\\
+\textbf{Cost:} Variable (GM set)
+
+\medskip
+
+\subsection*{Second Wind}
+\textbf{Pre-Requisites:} None\\
+\textbf{Effect:} Once per combat, recover 10\% of max HP as a free action.\\
+\textbf{Cost:} 3 XP
+
+\medskip
+
+\subsection*{Martial Mastery}
+\textbf{Pre-Requisites (Level 1):} Melee Weapons 8, Strength 6\\
+\textbf{Effect (Level 1):} +1 Damage with Melee Weapons\\[0.25em]
+\textbf{Pre-Requisites (Level 2):} Melee Weapons 10, Toughness 2\\
+\textbf{Effect (Level 2):} +1 Parry bonus\\[0.25em]
+\textbf{Pre-Requisites (Level 3):} GM Permission\\
+\textbf{Effect (Level 3):} May make an extra attack once per round.\\
+\textbf{Cost per Level:} 5 XP
 
 \end{multicols}
 \newpage
@@ -75,10 +118,12 @@ This table is here so we can use it and link to it as a pre-req.
 \endfoot
 \hline
 \endlastfoot
-\SkillRow{Administration}{Perception, Wisdom, Intelligence}{\lipsum[1]}
-\SkillRow{Investigation}{Agility, Perception, Wisdom}{\lipsum[2]}
-\SkillRow{Law}{Perception, Wisdom, Intelligence}{\lipsum[3]}
-\SkillRow{Magic Runic}{Perception, Wisdom, Intelligence}{\lipsum[4]}
+\SkillRow{Athletics}{Strength, Dexterity}{\lipsum[4]}
+\SkillRow{Melee Weapons}{Strength, Agility}{\lipsum[4]}
+\SkillRow{Firearms}{Perception, Agility}{\lipsum[4]}
+\SkillRow{Stealth}{Dexterity, Intelligence}{\lipsum[4]}
+\SkillRow{Persuasion}{Charisma, Intelligence}{\lipsum[4]}
+\SkillRow{Mechanics}{Intelligence, Perception}{\lipsum[4]}
 \hline
 \end{longtable}
 
