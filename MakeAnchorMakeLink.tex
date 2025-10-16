@@ -3,6 +3,14 @@
 \def\stripspaces#1{\zap@space#1 \@empty}
 \makeatother
 
+% Common function to normalize a name to a label-safe format
+\makeatletter
+\newcommand{\MakeLabelName}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \expandafter\stripspaces\tempa%
+}
+\makeatother
+
 % MakeAnchor: create a label with normalized name
 \newcommand{\MakeAnchor}[1]{%
   \edef\tempa{\detokenize{#1}}%
@@ -21,8 +29,7 @@
 
 % MakePerkAnchor: create a label with normalized name
 \newcommand{\MakePerkAnchor}[1]{%
-  \edef\tempa{\detokenize{#1}}%
-  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \edef\anchorname{\MakeLabelName{#1}}%
   \label{\anchorname}%
   \index{Perk!#1}#1%
 }
@@ -39,5 +46,6 @@
 
 % MakePerkLink: display text, link to page of the anchor
 \newcommand{\MakePerkLink}[1]{%
-  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
+  \edef\anchorname{\MakeLabelName{#1}}%
+  #1 (P.\pageref{\anchorname})\index{Perk!#1}%
 }
