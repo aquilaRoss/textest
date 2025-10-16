@@ -6,7 +6,7 @@
 \input{MakeAnchorMakeLink_use}
 
 
-\newcommand{\MakePerkLink_Other}[1]{%
+\newcommand{\MakePerkLinkOther}[1]{%
   #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
 }
 
@@ -94,9 +94,9 @@ will this work - \MakePerkLink{Gearhead}
 
 will this work - \MakePerkLink{Toughness}
 
-will this work - \MakePerkLink_Other{Gearhead}
+will this work - \MakePerkLinkOther{Gearhead}
 
-will this work - \MakePerkLink_Other{Toughness}
+will this work - \MakePerkLinkOther{Toughness}
 
 \subsection*{\MakePerkAnchor{Martial Mastery}}
 \textbf{Pre-Requisites (Level 1):} \MakeSkillLink{Melee Weapons} 8, Strength 6\\
