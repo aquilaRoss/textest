@@ -11,7 +11,7 @@
 % The main perk command
 \newcommand{\PerkEntry}[1]{%
   % Load user-provided keys into macros
-  \pgfkeys{/perk, #1}%
+  \pgfkeys{/perk,#1}%
   % Render the perk
   \subsection*{\MakePerkAnchor{\perk@name}}%
   \ifx\perk@prereq\@empty\else
