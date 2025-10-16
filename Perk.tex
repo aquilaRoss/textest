@@ -1,10 +1,9 @@
 % --- Define defaults for all fields ---
-\makeatletter
+\newcommand{\perkEmpty}{}
 \newcommand{\perkname}{}
 \newcommand{\perkprereq}{}
 \newcommand{\perkeffect}{}
 \newcommand{\perkcost}{}
-\makeatother
 
 % --- Define key family ---
 \pgfkeys{
@@ -16,28 +15,28 @@
 }
 
 % --- Define PerkEntry command ---
-\makeatletter
-\newcommand{\PerkEntryTest}[1]{%
-  \renewcommand{\perkname}{}%
-  \renewcommand{\perkprereq}{}%
-  \renewcommand{\perkeffect}{}%
-  \renewcommand{\perkcost}{}%
-  \pgfkeys{/perk,#1}%
-  % Instead of calling MakePerkAnchor, just print the name
-  \subsection*{\perkname}%
+\newcommand{\PerkEntry}[1]{%
+  % Reset fields to empty
+  \renewcommand{\perkname}{\perkEmpty}%
+  \renewcommand{\perkprereq}{\perkEmpty}%
+  \renewcommand{\perkeffect}{\perkEmpty}%
+  \renewcommand{\perkcost}{\perkEmpty}%
   %
-  \ifx\perkprereq\@empty\else
+  % Load the keys
+  \pgfkeys{/perk,#1}%
+  %
+  % Render the perk name with anchor / index
+  \subsection*{\MakePerkAnchor{\perkname}}%
+  %
+  % Only print non-empty fields
+  \ifx\perkprereq\perkEmpty\else
     \textbf{Pre-Requisites:} \perkprereq\\%
   \fi
-  \ifx\perkeffect\@empty\else
+  \ifx\perkeffect\perkEmpty\else
     \textbf{Effect:} \perkeffect\\%
   \fi
-  \ifx\perkcost\@empty\else
+  \ifx\perkcost\perkEmpty\else
     \textbf{Cost:} \perkcost%
   \fi
   \medskip
 }
-\makeatother
-
-
-
