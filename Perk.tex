@@ -17,16 +17,14 @@
 
 % --- Define PerkEntry command ---
 \makeatletter
-\newcommand{\PerkEntry}[1]{%
-  % Reset values
+\newcommand{\PerkEntryTest}[1]{%
   \renewcommand{\perk@name}{}%
   \renewcommand{\perk@prereq}{}%
   \renewcommand{\perk@effect}{}%
   \renewcommand{\perk@cost}{}%
-  % Load keys
   \pgfkeys{/perk,#1}%
-  % Directly pass the macro to MakePerkAnchor
-  \subsection*{\MakePerkAnchor{\perk@name}}%
+  % Instead of calling MakePerkAnchor, just print the name
+  \subsection*{\perk@name}%
   %
   \ifx\perk@prereq\@empty\else
     \textbf{Pre-Requisites:} \perk@prereq\\%
@@ -40,5 +38,6 @@
   \medskip
 }
 \makeatother
+
 
 
