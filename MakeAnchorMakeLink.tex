@@ -19,6 +19,14 @@
   \index{Skill!#1}#1%
 }
 
+% MakePerkAnchor: create a label with normalized name
+\newcommand{\MakePerkAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Perk!#1}#1%
+}
+
 % MakeLink: display text, link to page of the anchor
 \newcommand{\MakeLink}[1]{%
   #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{#1}%
@@ -27,4 +35,9 @@
 % MakeSkillLink: display text, link to page of the anchor
 \newcommand{\MakeSkillLink}[1]{%
   #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Skill!#1}%
+}
+
+% MakePerkLink: display text, link to page of the anchor
+\newcommand{\MakePerkLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
 }
