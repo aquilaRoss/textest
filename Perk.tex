@@ -8,12 +8,13 @@
   cost/.estore in = \perk@cost,
 }
 
-% The main perk command
 \newcommand{\PerkEntry}[1]{%
-  % Load user-provided keys into macros
   \pgfkeys{/perk,#1}%
-  % Render the perk
-  \subsection*{\MakePerkAnchor{\perk@name}}%
+  % Safely expand the perk name before passing to MakePerkAnchor
+  \begingroup
+    \edef\tempname{\perk@name}%
+    \subsection*{\MakePerkAnchor{\tempname}}%
+  \endgroup
   \ifx\perk@prereq\@empty\else
     \textbf{Pre-Requisites:} \perk@prereq\\%
   \fi
