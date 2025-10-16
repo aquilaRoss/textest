@@ -23,11 +23,10 @@
   \renewcommand{\perk@prereq}{}%
   \renewcommand{\perk@effect}{}%
   \renewcommand{\perk@cost}{}%
-  %
+  % Load keys
   \pgfkeys{/perk,#1}%
-  %
-  % Normal expansion instead of edef (prevents recursion)
-  \subsection*{\expandafter\MakePerkAnchor\expandafter{\perk@name}}%
+  % Directly pass the macro to MakePerkAnchor
+  \subsection*{\MakePerkAnchor{\perk@name}}%
   %
   \ifx\perk@prereq\@empty\else
     \textbf{Pre-Requisites:} \perk@prereq\\%
@@ -41,4 +40,5 @@
   \medskip
 }
 \makeatother
+
 
