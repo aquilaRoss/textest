@@ -1,5 +1,5 @@
 
-% Define a key family for perks
+% Define keys
 \pgfkeys{
   /perk/.is family, /perk,
   name/.estore in = \perk@name,
@@ -8,9 +8,10 @@
   cost/.estore in = \perk@cost,
 }
 
+\makeatletter
+% The main perk command
 \newcommand{\PerkEntry}[1]{%
   \pgfkeys{/perk,#1}%
-  % Safely expand the perk name before passing to MakePerkAnchor
   \begingroup
     \edef\tempname{\perk@name}%
     \subsection*{\MakePerkAnchor{\tempname}}%
@@ -26,3 +27,4 @@
   \fi
   \medskip
 }
+\makeatother
