@@ -1,0 +1,27 @@
+
+% Define a key family for perks
+\pgfkeys{
+  /perk/.is family, /perk,
+  name/.estore in = \perk@name,
+  prereq/.estore in = \perk@prereq,
+  effect/.estore in = \perk@effect,
+  cost/.estore in = \perk@cost,
+}
+
+% The main perk command
+\newcommand{\PerkEntry}[1]{%
+  % Load user-provided keys into macros
+  \pgfkeys{/perk, #1}%
+  % Render the perk
+  \subsection*{\MakePerkAnchor{\perk@name}}%
+  \ifx\perk@prereq\@empty\else
+    \textbf{Pre-Requisites:} \perk@prereq\\%
+  \fi
+  \ifx\perk@effect\@empty\else
+    \textbf{Effect:} \perk@effect\\%
+  \fi
+  \ifx\perk@cost\@empty\else
+    \textbf{Cost:} \perk@cost%
+  \fi
+  \medskip
+}
