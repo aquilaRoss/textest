@@ -5,8 +5,15 @@
 
 \input{MakeAnchorMakeLink_use}
 
+% MakePerkAnchor: create a label with normalized name
+\newcommand{\MakePerkAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Perk!#1}#1%
+}
 
-\newcommand{\MakePerkLinkOther}[1]{%
+\newcommand{\MakePerkLink}[1]{%
   #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
 }
 
@@ -90,9 +97,9 @@
 
 \medskip
 
-will this work - \MakePerkLinkOther{Gearhead}
+will this work - \MakePerkLink{Gearhead}
 
-will this work - \MakePerkLinkOther{Toughness}
+will this work - \MakePerkLink{Toughness}
 
 \subsection*{\MakePerkAnchor{Martial Mastery}}
 \textbf{Pre-Requisites (Level 1):} \MakeSkillLink{Melee Weapons} 8, Strength 6\\
