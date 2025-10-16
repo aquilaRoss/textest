@@ -18,7 +18,7 @@
 % --- Define PerkEntry command ---
 \makeatletter
 \newcommand{\PerkEntry}[1]{%
-  % Reset values to empty before loading new keys
+  % Reset values
   \renewcommand{\perk@name}{}%
   \renewcommand{\perk@prereq}{}%
   \renewcommand{\perk@effect}{}%
@@ -26,11 +26,8 @@
   %
   \pgfkeys{/perk,#1}%
   %
-  % Safe expansion for MakePerkAnchor
-  \begingroup
-    \edef\tempname{\perk@name}%
-    \subsection*{\MakePerkAnchor{\tempname}}%
-  \endgroup
+  % Normal expansion instead of edef (prevents recursion)
+  \subsection*{\expandafter\MakePerkAnchor\expandafter{\perk@name}}%
   %
   \ifx\perk@prereq\@empty\else
     \textbf{Pre-Requisites:} \perk@prereq\\%
@@ -44,3 +41,4 @@
   \medskip
 }
 \makeatother
+
