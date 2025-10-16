@@ -1,15 +1,17 @@
 % Helper to remove spaces (for MakeAnchor)
 \makeatletter
-\def\stripspaces#1{\zap@space#1 \@empty}
+\newcommand{\StripSpaces}[1]{%
+  \begingroup
+  \edef\x{\endgroup\zap@space#1 \empty}%
+  \x
+}
 \makeatother
 
 % Common function to normalize a name to a label-safe format
-\makeatletter
 \newcommand{\MakeLabelName}[1]{%
   \edef\tempa{\detokenize{#1}}%
-  \expandafter\stripspaces\tempa%
+  \StripSpaces{\tempa}%
 }
-\makeatother
 
 % MakeAnchor: create a label with normalized name
 \newcommand{\MakeAnchor}[1]{%
