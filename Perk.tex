@@ -26,7 +26,8 @@
   \pgfkeys{/perk,#1}%
   %
   % Render the perk name with anchor / index
-  \subsection*{\MakePerkAnchor{\perkname}}%
+  \subsection*{\perkname}%
+  \MakePerkAnchor{\perkname}%
   %
   % Only print non-empty fields
   \ifx\perkprereq\perkEmpty\else
