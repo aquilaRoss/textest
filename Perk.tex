@@ -1,40 +1,21 @@
-% --- Define defaults for all fields ---
-\newcommand{\perkEmpty}{}
-\newcommand{\perkprereq}{}
-\newcommand{\perkeffect}{}
-\newcommand{\perkcost}{}
-
 % --- Define key family ---
 \pgfkeys{
   /perk/.is family, /perk,
   prereq/.estore in = \perkprereq,
   effect/.estore in = \perkeffect,
-  cost/.estore in = \perkcost,
 }
 
 % --- Define PerkEntry command ---
-\newcommand{\PerkEntry}[2]{%
+\newcommand{\PerkEntry}[3]{%
   % #1 = Perk Name
-  % #2 = Key-value data
-  \renewcommand{\perkprereq}{\perkEmpty}%
-  \renewcommand{\perkeffect}{\perkEmpty}%
-  \renewcommand{\perkcost}{\perkEmpty}%
-  %
+  % #1 = Cost Per Level
+  % #3 = Key-value data
   % Load the keys
-  \pgfkeys{/perk,#2}%
-  %
+  \pgfkeys{/perk,#3}%
   % Render the perk name with anchor / index
   \subsection*{\MakePerkAnchor{#1}}%
-  %
-  % Only print non-empty fields
-  \ifx\perkprereq\perkEmpty\else
-    \textbf{Pre-Requisites:} \perkprereq\\%
-  \fi
-  \ifx\perkeffect\perkEmpty\else
-    \textbf{Effect:} \perkeffect\\%
-  \fi
-  \ifx\perkcost\perkEmpty\else
-    \textbf{Cost:} \perkcost%
-  \fi
+  \textbf{Pre-Requisites:} \perkprereq\\%
+  \textbf{Effect:} \perkeffect\\%
+  \textbf{Cost:} \perkcost%
   \medskip
 }
