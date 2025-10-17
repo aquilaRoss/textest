@@ -1,7 +1,7 @@
 % --- Define key family ---
 \pgfkeys{
   /perk/.is family, /perk,
-  /perk/.key separator=|,
+  /perk/.cd,
   prereq/.estore in = \perkprereq,
   effect/.estore in = \perkeffect,
 }
@@ -12,7 +12,7 @@
   % #2 = Cost Per Level
   % #3 = Key-value data
   % Load the keys
-  \pgfkeys{/perk,#3}%
+  \pgfkeys{/pgf/keys/key separator=|, /perk/.cd, #3}%
   % Render the perk name with anchor / index
   \subsection*{\MakePerkAnchor{#1}}%
   \textbf{Pre-Requisites:} \perkprereq\\%
