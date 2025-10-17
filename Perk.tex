@@ -1,6 +1,5 @@
 % --- Define defaults for all fields ---
 \newcommand{\perkEmpty}{}
-\newcommand{\perkname}{}
 \newcommand{\perkprereq}{}
 \newcommand{\perkeffect}{}
 \newcommand{\perkcost}{}
@@ -8,26 +7,25 @@
 % --- Define key family ---
 \pgfkeys{
   /perk/.is family, /perk,
-  name/.estore in = \perkname,
   prereq/.estore in = \perkprereq,
   effect/.estore in = \perkeffect,
   cost/.estore in = \perkcost,
 }
 
 % --- Define PerkEntry command ---
-\newcommand{\PerkEntry}[1]{%
-  % Reset fields to empty
-  \renewcommand{\perkname}{\perkEmpty}%
+\newcommand{\PerkEntry}[2]{%
+  % #1 = Perk Name
+  % #2 = Key-value data
   \renewcommand{\perkprereq}{\perkEmpty}%
   \renewcommand{\perkeffect}{\perkEmpty}%
   \renewcommand{\perkcost}{\perkEmpty}%
   %
   % Load the keys
-  \pgfkeys{/perk,#1}%
+  \pgfkeys{/perk,#2}%
   %
   % Render the perk name with anchor / index
-  \subsection*{\perkname}%
-  \MakePerkAnchor{\perkname}%
+  \subsection*{#1}%
+  \MakePerkAnchor{#1}%
   %
   % Only print non-empty fields
   \ifx\perkprereq\perkEmpty\else
