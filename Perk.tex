@@ -12,7 +12,7 @@
   % #2 = Cost Per Level
   % #3 = Key-value data
   % Load the keys
-  \pgfkeys{/pgf/keys/key separator=|, /perk/.cd, #3}%
+  \pgfkeys{/perk,#3}%
   % Render the perk name with anchor / index
   \subsection*{\MakePerkAnchor{#1}}%
   \textbf{Pre-Requisites:} \perkprereq\\%
