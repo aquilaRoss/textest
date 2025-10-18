@@ -19,17 +19,17 @@ jobs:
       - name: Compile LaTeX - Link MRE
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: MakeAnchorMakeLink_MRE.tex
+          root_file: MRE_AnchorLink.tex
         
       - name: Compile LaTeX - Skill MRE
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: SkillTable_MRE.tex
+          root_file: MRE_SkillTable.tex
         
       - name: Compile LaTeX - Perk MRE
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: Perk_MRE.tex
+          root_file: MRE_Perk.tex
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
