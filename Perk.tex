@@ -17,10 +17,10 @@
   \textbf{Pre-Requisites:} #1\\%
 }
 
-\newcommand{\PerkBaseEffect}[1]{%
-  \textbf{Effect:} #1\\%
-}
-
+% Optional Second Parameter changes it from
+% Effect: effect goes here
+% to
+% Level X Effect: effect goes here
 \NewDocumentCommand{\PerkEffect}{m g}{%
   \textbf{%
     \IfNoValueTF{#2}{Effect:}{Level #2 Effect:}%
