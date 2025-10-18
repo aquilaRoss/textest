@@ -4,25 +4,12 @@
 \usepackage{multicol}   % so we can do the perks as two columns
 
 \input{MakeAnchorMakeLink_use}
-
-% MakePerkAnchor: create a label with normalized name
-\newcommand{\MakePerkAnchor}[1]{%
-  \edef\tempa{\detokenize{#1}}%
-  \edef\anchorname{\expandafter\stripspaces\tempa}%
-  \label{\anchorname}%
-  \index{Perk!#1}#1%
-}
-
-\newcommand{\MakePerkLink}[1]{%
-  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
-}
-
 \input{SkillTable_use}
 \input{Perk_use}
 
 \usepackage{lipsum}         % MRE ONLY
-
 \usepackage{makeidx}  % for the index
+
 \makeindex
 
 \input{MakeAnchorMakeLink}
@@ -34,15 +21,15 @@
 \section{Perks}
 \begin{multicols}{2}
 
-\PerkEntry{Toughness}{3}{
-  prereq = {Strength 5},
-  effect = {Gain +2 HP per level.}
-}
+\PerkName{Toughness}
+\PerkPrereq{Strength 5}
+\PerkBaseEffect{Gain +2 HP}
+\PerkBaseCost{3}
 
-\PerkEntry{Second Wind}{3}{
-  prereq = {None},
-  effect = {Once per combat, recover 10 percent of max HP as a free action.}
-}
+\PerkName{Second Wind}
+\PerkPrereq{None}
+\PerkBaseEffect{Once per combat, recover 10 percent of max HP as a free action.}
+\PerkBaseCost{4}
 
 %\PerkEntry{
 %  name = Weapon Focus (Melee),

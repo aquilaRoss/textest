@@ -1,22 +1,26 @@
-% --- Define key family ---
-\pgfkeys{
-  /perk/.is family, /perk,
-  /perk/.cd,
-  prereq/.estore in = \perkprereq,
-  effect/.estore in = \perkeffect,
+\newcommand{\MakePerkAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Perk!#1}#1%
 }
 
-% --- Define PerkEntry command ---
-\newcommand{\PerkEntry}[3]{%
-  % #1 = Perk Name
-  % #2 = Cost Per Level
-  % #3 = Key-value data
-  % Load the keys
-  \pgfkeys{/perk,#3}%
-  % Render the perk name with anchor / index
+\newcommand{\MakePerkLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
+}
+
+\newcommand{\PerkName}[1]{%
   \subsection*{\MakePerkAnchor{#1}}%
-  \textbf{Pre-Requisites:} \perkprereq\\%
-  \textbf{Effect:} \perkeffect\\%
-  \textbf{Cost:} #2%
-  \medskip
+}
+
+\newcommand{\PerkPrereq}[1]{%
+  \textbf{Pre-Requisites:} #1\\%
+}
+
+\newcommand{\PerkBaseEffect}[1]{%
+  \textbf{Effect:} #1\\%
+}
+
+\newcommand{\PerkBaseCost}[1]{%
+  \textbf{Cost:} #1\\%
 }
