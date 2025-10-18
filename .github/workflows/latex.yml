@@ -36,3 +36,9 @@ jobs:
         with:
           name: pdfs
           path: '*.pdf'
+      
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: latex-logs
+          path: '*.log'
