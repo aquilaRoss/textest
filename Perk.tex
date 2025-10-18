@@ -21,6 +21,16 @@
   \textbf{Effect:} #1\\%
 }
 
+%\NewDocumentCommand{\PerkEffect}{m o}{%
+%  \textbf{Effect%
+%    \IfValueT{#2}{ (Level #2)}%
+%    :} #1\\%
+%}
+
 \newcommand{\PerkBaseCost}[1]{%
   \textbf{Cost:} #1\\%
+}
+
+\newcommand{\PerkCostPerLevel}[1]{%
+  \textbf{Cost Per Level:} #1\\%
 }
