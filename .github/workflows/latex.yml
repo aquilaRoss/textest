@@ -42,3 +42,17 @@ jobs:
         with:
           name: latex-logs
           path: '*.log'
+
+      - name: Check for undefined references
+        run: |
+          echo "Searching for undefined LaTeX references in main.log..."
+          if [ -f main.log ]; then
+            # Join wrapped lines and extract all 'Reference ... undefined' warnings
+            awk '
+              { if (NF == 0) next }
+              /LaTeX Warning: Reference/ { printf "%s ", $0; next }
+              /undefined on input line/ { print $0 }
+            ' main.log | sed 's/  */ /g'
+          else
+            echo "No main.log file found!"
+          fi
