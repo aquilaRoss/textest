@@ -47,12 +47,22 @@ jobs:
         run: |
           echo "Searching for undefined LaTeX references in main.log..."
           if [ -f main.log ]; then
-            # Join wrapped lines and extract all 'Reference ... undefined' warnings
+            echo "--------------------------------------------"
             awk '
-              { if (NF == 0) next }
-              /LaTeX Warning: Reference/ { printf "%s ", $0; next }
-              /undefined on input line/ { print $0 }
-            ' main.log | sed 's/  */ /g'
+              {
+                if ($0 ~ /LaTeX Warning: Reference/) {
+                  ref_line = $0
+                  getline next_line
+                  if (next_line ~ /undefined on input line/) {
+                    ref_line = ref_line " " next_line
+                  }
+                  gsub(/  +/, " ", ref_line)
+                  print ref_line
+                }
+              }
+            ' main.log
+            echo "--------------------------------------------"
           else
             echo "No main.log file found!"
           fi
+
