@@ -53,23 +53,11 @@
   \vspace{0.5em} % vertical space after
 }
 
-
 \input{MakeAnchorMakeLink}
 \input{SkillTable}
 \input{Perk}
 
-
-
 \input{formatting_TOC}
-
-
-
-
-
-
-
-
-
 
 \makeindex
 \pagestyle{fancy}
@@ -78,64 +66,22 @@
 \rhead{\thepage}
 
 \begin{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+%%-------------------------------------------------------------------------
+\ClearBackgroundImage
+\SetBackgroundImage{frontPage.png}
+\title{Modular LaTeX POC}
+\author{Your Name}
+\date{\today}
+\maketitle
+\ClearBackgroundImage
 \newpage
+%%-------------------------------------------------------------------------
+\begin{multicols}{2}
+\tableofcontents
+\end{multicols}
 \newpage
-\newpage
-\newpage
-\newpage
-\newpage
-\newpage
-\newpage
-\newpage
-\newpage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\input{titlePage}	\newpage
-\input{contents}		\newpage
+%%-------------------------------------------------------------------------
+\section{Attributes}
 %%-------------------------------------------------------------------------
 \section{Skills}
 These are Skills, this is where they go, put some text here about how they work and what they do.
