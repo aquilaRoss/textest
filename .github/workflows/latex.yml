@@ -15,6 +15,11 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: _Main.tex
+
+      - name: Compile LaTeX - main
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: Skills.tex
         
       - name: Compile LaTeX - Link MRE
         uses: xu-cheng/latex-action@v3
