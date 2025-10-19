@@ -1,73 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[a4paper, margin=1.5cm]{geometry}
 
-\usepackage{customPackages/mylinks}
-\usepackage{customPackages/loh_skills}
-\usepackage{customPackages/loh_perks}
-
-\usepackage{hyperref} % For links and references
-\usepackage{makeidx}  % for the Indexing.
-
-\usepackage{longtable}      % for the table itself
-\usepackage{array}          % for \newcolumntype (centered text in table)
-
-\usepackage{xparse}     % Optional Argument Stuff IfNoValueTF
-
-\usepackage{graphicx}
-\usepackage{multicol}
-\usepackage{ragged2e}
-\usepackage{lipsum}
-\usepackage{fancyhdr}
-\usepackage{makeidx}
-\usepackage{hyperref}
-\usepackage{parskip}
-\usepackage{titlesec}
-\usepackage{tikz}
-\usepackage{eso-pic}
-\usepackage{xcolor}
-\usepackage{tabularx}
-\usepackage{tabularray}
-\UseTblrLibrary{booktabs}
-\usepackage{longtable}
-\usepackage{tocloft}
-\usepackage{xcolor}
-\usepackage{titlesec}
-
-% used to get the full screen background image stuff to work
-\newcommand\SetBackgroundImage[1]{%
-  \AddToShipoutPictureBG*{%
-    \put(0,0){%
-      \parbox[b][\paperheight]{\paperwidth}{%
-        \vfill
-        \centering
-        \includegraphics[width=\paperwidth,height=\paperheight]{#1}%
-        \vfill
-      }%
-    }%
-  }%
-}
-
-% used to get the full screen background image stuff to work
-\newcommand\ClearBackgroundImage{%
-  \ClearShipoutPictureBG
-}
-
-% Define a custom command for subsubsubsection
-% these are NOT sections, but should allow us to play with headings and suchlike.
-\usepackage{xcolor} % optional, for color
-\newcommand{\subsubsubsection}[1]{%
-  \vspace{1em} % vertical space before
-  \noindent\textbf{\small #1}\par
-  \vspace{0.5em} % vertical space after
-}
-
-\input{include/formatting_TOC.tex}
-
-\makeindex
-\pagestyle{fancy}
-\fancyhf{}
-\lhead{POC Document}
-\rhead{\thepage}
+\input{_Preamble}
 
 \begin{document}
 %%-------------------------------------------------------------------------
