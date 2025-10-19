@@ -42,3 +42,8 @@
 \newcommand{\MakePerkLink}[1]{%
   #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
 }
+
+% MakeSkillLink: display text, link to page of the anchor (Flaw category)
+\newcommand{\MakeFlawLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Flaw!#1}%
+}
