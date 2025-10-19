@@ -57,11 +57,11 @@
   \vspace{0.5em} % vertical space after
 }
 
-\input{include\LinkTools}
-\input{include\SkillTools}
-\input{include\PerkTools}
+\input{include/LinkTools}
+\input{include/SkillTools}
+\input{include/PerkTools}
 
-\input{include\formatting_TOC.tex}
+\input{include/formatting_TOC.tex}
 
 \makeindex
 \pagestyle{fancy}
@@ -256,6 +256,7 @@ The Breaklands of Daetarre are a fractured archipelago of fiercely independent c
 \subsection{Journeyman Craftsman}
 \section{Perks and Flaws}
 \subsection{Perks}
+\begin{multicols}{2}
 \subsubsection{A -> E}
 \subsubsubsection{Accelerated Healing}
 \subsubsubsection{Armour Proficiency - Heavy}
@@ -278,22 +279,25 @@ The Breaklands of Daetarre are a fractured archipelago of fiercely independent c
 \PerkName{Sharpshooter}
 \PerkPrereq{\MakeSkillLink{Firearms} 8, Perception 7}
 \PerkEffect{Ignore -2 penalty for long-range attacks.}
-\PerkBaseCost{6}%
+\PerkBaseCost{6}
 %
 \PerkName{Second Wind}
 \PerkPrereq{None}
 \PerkEffect{Once per combat, recover 10 percent of max HP as a free action.}
-\PerkBaseCost{4}%
+\PerkBaseCost{4}
 %
 \PerkName{Toughness}
 \PerkPrereq{Strength 5}
 \PerkEffect{Gain +2 HP}
-\PerkBaseCost{3}%
+\PerkBaseCost{3}
 %
 \PerkName{Weapon Focus (Melee)}
 \PerkPrereq{Any Melee Skill at 6}
 \PerkEffect{+1 to attack rolls with chosen melee weapon.}
-\PerkBaseCost{4}%
+\PerkBaseCost{4}
+%
+\end{multicols}
+%
 %
 \subsection{Flaws}
 \subsubsection{A -> Z}
