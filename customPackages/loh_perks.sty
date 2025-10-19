@@ -6,11 +6,6 @@
 \RequirePackage{xparse}                 % for \NewDocumentCommand and \IfNoValueTF
 
 \newcommand{\PerkName}[1]{%
-  \subsection*{\MakePerkAnchor{#1}}%
-}
-
-% Alternative version under testing
-\newcommand{\PerkNameTest}[1]{%
   {\MakePerkAnchor{#1}\par
    \vspace{0.5em} % optional spacing
    \textbf{\fontsize{14}{16}\selectfont #1}\par
