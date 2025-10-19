@@ -1,13 +1,3 @@
-\newcommand{\MakePerkAnchor}[1]{%
-  \edef\tempa{\detokenize{#1}}%
-  \edef\anchorname{\expandafter\stripspaces\tempa}%
-  \label{\anchorname}%
-  \index{Perk!#1}#1%
-}
-
-\newcommand{\MakePerkLink}[1]{%
-  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
-}
 
 \newcommand{\PerkName}[1]{%
   \subsection*{\MakePerkAnchor{#1}}%
@@ -27,7 +17,7 @@
   } #1\\%
 }
 
-\newcommand{\PerkBaseCost}[1]{%
+\newcommand{\PerkCost}[1]{%
   \textbf{Cost:} #1\\%
 }
 
