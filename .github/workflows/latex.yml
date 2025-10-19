@@ -16,10 +16,15 @@ jobs:
         with:
           root_file: _Main.tex
 
-      - name: Compile LaTeX - main
+      - name: Compile LaTeX - Skills
         uses: xu-cheng/latex-action@v3
         with:
           root_file: Skills.tex
+
+      - name: Compile LaTeX - Perks and Flaws
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: PerksAndFlaws.tex
         
       - name: Compile LaTeX - Link MRE
         uses: xu-cheng/latex-action@v3

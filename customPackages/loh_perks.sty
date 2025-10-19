@@ -9,6 +9,14 @@
   \subsection*{\MakePerkAnchor{#1}}%
 }
 
+% Alternative version under testing
+\newcommand{\PerkNameTest}[1]{%
+  {\MakePerkAnchor{#1}\par
+   \vspace{0.5em} % optional spacing
+   \textbf{\fontsize{14}{16}\selectfont #1}\par
+  }%
+}
+
 \newcommand{\PerkPrereq}[1]{%
   \textbf{Pre-Requisites:} #1\\%
 }
