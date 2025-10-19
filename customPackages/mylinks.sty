@@ -1,3 +1,12 @@
+% mylinks.sty - Minimal helper for creating anchors and links
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mylinks}[2025/10/19 Minimal anchor and link helpers]
+
+\RequirePackage{makeidx}
+
+% Enable indexing
+\makeindex
+
 % Helper to remove spaces (for MakeAnchor)
 \makeatletter
 \def\stripspaces#1{\zap@space#1 \@empty}
@@ -6,12 +15,12 @@
 % MakeAnchor: create a label with normalized name
 \newcommand{\MakeAnchor}[1]{%
   \edef\tempa{\detokenize{#1}}%
-  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}% 
   \label{\anchorname}%
   \index{#1}#1%
 }
 
-% MakeSkillAnchor: create a label with normalized name
+% MakeSkillAnchor: create a label with normalized name (Skill category)
 \newcommand{\MakeSkillAnchor}[1]{%
   \edef\tempa{\detokenize{#1}}%
   \edef\anchorname{\expandafter\stripspaces\tempa}%
@@ -24,7 +33,7 @@
   #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{#1}%
 }
 
-% MakeSkillLink: display text, link to page of the anchor
+% MakeSkillLink: display text, link to page of the anchor (Skill category)
 \newcommand{\MakeSkillLink}[1]{%
   #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Skill!#1}%
 }
