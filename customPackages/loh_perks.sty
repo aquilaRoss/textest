@@ -1,3 +1,9 @@
+% loh_perks.sty - Minimal helper for creating anchors and links
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{loh_perks}[2025/10/19 Perk Functions]
+
+\RequirePackage{customPackages/mylinks} % for MakePerkAnchor
+\RequirePackage{xparse}                 % for \NewDocumentCommand and \IfNoValueTF
 
 \newcommand{\PerkName}[1]{%
   \subsection*{\MakePerkAnchor{#1}}%
