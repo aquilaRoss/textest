@@ -15,9 +15,84 @@
 
 \makeindex
 
-\input{MakeAnchorMakeLink}
-\input{SkillTable}
-\input{Perk}
+% Helper to remove spaces (for MakeAnchor)
+\makeatletter
+\def\stripspaces#1{\zap@space#1 \@empty}
+\makeatother
+
+% MakeAnchor: create a label with normalized name
+\newcommand{\MakeAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{#1}#1%
+}
+
+% MakeSkillAnchor: create a label with normalized name
+\newcommand{\MakeSkillAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Skill!#1}#1%
+}
+
+% MakeLink: display text, link to page of the anchor
+\newcommand{\MakeLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{#1}%
+}
+
+% MakeSkillLink: display text, link to page of the anchor
+\newcommand{\MakeSkillLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Skill!#1}%
+}
+
+% make sure tables don't have EXTRA padding
+\setlength{\tabcolsep}{0pt}
+
+% used to get the Centered Text in the Column of a Table.
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% Make the skill setup in the tex file look nicer.
+\newcommand{\SkillRow}[3]{%
+  \MakeSkillAnchor{#1} & #2 & #3 \\%
+}
+
+\newcommand{\MakePerkAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Perk!#1}#1%
+}
+
+\newcommand{\MakePerkLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
+}
+
+\newcommand{\PerkName}[1]{%
+  \subsection*{\MakePerkAnchor{#1}}%
+}
+
+\newcommand{\PerkPrereq}[1]{%
+  \textbf{Pre-Requisites:} #1\\%
+}
+
+% Optional Second Parameter changes it from
+% Effect: effect goes here
+% to
+% Level X Effect: effect goes here
+\NewDocumentCommand{\PerkEffect}{m g}{%
+  \textbf{%
+    \IfNoValueTF{#2}{Effect:}{Level #2 Effect:}%
+  } #1\\%
+}
+
+\newcommand{\PerkBaseCost}[1]{%
+  \textbf{Cost:} #1\\%
+}
+
+\newcommand{\PerkCostPerLevel}[1]{%
+  \textbf{Cost Per Level:} #1\\%
+}
 
 \begin{document}
 

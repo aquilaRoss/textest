@@ -7,7 +7,36 @@
 \usepackage{lipsum}   % For filler text
 \makeindex
 
-\input{MakeAnchorMakeLink}
+% Helper to remove spaces (for MakeAnchor)
+\makeatletter
+\def\stripspaces#1{\zap@space#1 \@empty}
+\makeatother
+
+% MakeAnchor: create a label with normalized name
+\newcommand{\MakeAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{#1}#1%
+}
+
+% MakeSkillAnchor: create a label with normalized name
+\newcommand{\MakeSkillAnchor}[1]{%
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Skill!#1}#1%
+}
+
+% MakeLink: display text, link to page of the anchor
+\newcommand{\MakeLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{#1}%
+}
+
+% MakeSkillLink: display text, link to page of the anchor
+\newcommand{\MakeSkillLink}[1]{%
+  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Skill!#1}%
+}
 
 \begin{document}
 
