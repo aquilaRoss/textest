@@ -2,15 +2,20 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{loh_perks}[2025/10/19 Perk Functions]
 
-\RequirePackage{customPackages/mylinks} % for MakePerkAnchor
+\RequirePackage{customPackages/mylinks} % for stripspaces
 \RequirePackage{xparse}                 % for \NewDocumentCommand and \IfNoValueTF
 
 \newcommand{\PerkName}[1]{%
-  {\MakePerkAnchor{#1}\par
-   \vspace{0.5em} % optional spacing
-   \textbf{\fontsize{14}{16}\selectfont #1}\par
-  }%
+  % Clean label name
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Perk!#1}%
+  % Display formatted name
+  {\vspace{0.5em}%
+   \textbf{\fontsize{14}{16}\selectfont #1}\par}%
 }
+
 
 \newcommand{\PerkPrereq}[1]{%
   \textbf{Pre-Requisites:} #1\\%
