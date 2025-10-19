@@ -3,6 +3,12 @@
 
 \input{_Preamble}
 
+% This is soft defined in the _chapterHeader as 0 and is then referenced
+% in the header and the footer to add in the needed document package, begin
+% and end doc to allow the main chapters (at the same level as main)
+% to be done as tex files in their own right.
+\newcommand{\inmain}{1} % inform chapters they are included in main doc
+
 \begin{document}
 %%-------------------------------------------------------------------------
 \ClearBackgroundImage
