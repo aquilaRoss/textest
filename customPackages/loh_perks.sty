@@ -6,13 +6,14 @@
 \RequirePackage{xparse}                 % for \NewDocumentCommand and \IfNoValueTF
 
 \newcommand{\FeatureName}[2]{%
+  \par
   % Clean label name
   \edef\tempa{\detokenize{#1}}%
   \edef\anchorname{\expandafter\stripspaces\tempa}%
   \label{\anchorname}%
   \index{#2!#1}%
   % Display formatted name
-  {\textbf{\fontsize{14}{16}\selectfont #1}\par\vspace{0.5em}}%
+  {\textbf{\fontsize{14}{16}\selectfont #1}}\\%
 }
 
 \newcommand{\PerkName}[1]{\FeatureName{#1}{Perk}}
