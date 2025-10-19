@@ -5,7 +5,7 @@
 \RequirePackage{customPackages/mylinks} % for stripspaces
 \RequirePackage{xparse}                 % for \NewDocumentCommand and \IfNoValueTF
 
-\newcommand{\PerkName}[1]{%
+\newcommand{\PerkNameOriginal}[1]{%
   % Clean label name
   \edef\tempa{\detokenize{#1}}%
   \edef\anchorname{\expandafter\stripspaces\tempa}%
@@ -15,6 +15,20 @@
   {\vspace{0.5em}%
    \textbf{\fontsize{14}{16}\selectfont #1}\par}%
 }
+
+\newcommand{\FeatureName}[2]{%
+  % Clean label name
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{#2!#1}%
+  % Display formatted name
+  {\vspace{0.5em}%
+   \textbf{\fontsize{14}{16}\selectfont #1}\par}%
+}
+
+\newcommand{\PerkName}[1]{\FeatureName{#1}{Perk}}
+\newcommand{\FlawName}[1]{\FeatureName{#1}{Flaw}}
 
 \newcommand{\PerkPrereq}[1]{%
   \textbf{Pre-Requisites:} #1\\%
