@@ -3,15 +3,9 @@
 % Make sure you add the footer too!!!
 \input{_chapterHeader}
 \section{Perks and Flaws}
-\subsection{Perks}
+blurb and detials and costs and suchlike go here, don't need the detial on that in the POC
+\newpage\subsection{Perks}
 \begin{multicols}{2}
-\subsubsection{A -> E}
-\subsubsubsection{Accelerated Healing}
-\subsubsubsection{Armour Proficiency - Heavy}
-\subsubsection{F -> H}
-\subsubsubsection{Fast Healer}
-\subsubsubsection{Great Marksman}
-\subsubsection{I -> Z}
 \PerkName{Martial Mastery}
 \PerkPrereq{\MakeSkillLink{Melee Weapons} 6 (+2 per Level). \MakePerkLink{Toughness}}
 \PerkEffect{+1 Damage with \MakeSkillLink{Melee Weapons}}{1}
@@ -44,5 +38,13 @@
 \PerkEffect{+1 to attack rolls with chosen melee weapon.}
 \PerkCost{4}
 %
+\end{multicols}
+\newpage\subsection{Flaws}
+\begin{multicols}{2}
+\PerkName{Social Outcast}
+\PerkEffect{You're awkward, abrasive, or simply uncomfortable around others—whatever the reason, social interaction is not your strength.\\
+Whenever you make a social roll involving direct conversation or persuasion (such as Bargain, Con, Persuasion, Leadership, etc.), you must score 1 additional success to achieve a positive outcome.\\
+This also applies to opposed social rolls, making it harder to sway or manipulate others in  conversation.}
+\PerkCost{1}
 \end{multicols}
 \input{_chapterFooter} % See Header
