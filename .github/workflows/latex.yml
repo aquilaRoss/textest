@@ -14,7 +14,7 @@ jobs:
       - name: Compile LaTeX - main
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: Legacy of Heroes.tex
+          root_file: "Legacy of Heroes.tex"
         
       - name: Compile LaTeX - Link MRE
         uses: xu-cheng/latex-action@v3
