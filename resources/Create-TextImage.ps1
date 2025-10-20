@@ -35,6 +35,7 @@ try {
 
     # --- Create drawing surface ---
     $bmp = New-Object System.Drawing.Bitmap($Width, $Height)
+    $bmp.SetResolution(72, 72)
     $graphics = [System.Drawing.Graphics]::FromImage($bmp)
     $graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
     $graphics.Clear([System.Drawing.Color]::White)
