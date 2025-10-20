@@ -48,14 +48,3 @@
   \textbf{Effect:} #4\\%
   \textbf{Cost:} #3\\%
 }
-
-\newcommand{\FeatureName}[2]{%
-  \par
-  % Clean label name
-  \edef\tempa{\detokenize{#1}}%
-  \edef\anchorname{\expandafter\stripspaces\tempa}%
-  \label{\anchorname}%
-  \index{#2!#1}%
-  % Display formatted name
-  {\textbf{\fontsize{14}{16}\selectfont #1}}\\%
-}

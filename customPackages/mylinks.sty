@@ -34,8 +34,10 @@
 }
 
 % MakeSkillLink: display text, link to page of the anchor (Skill category)
-\newcommand{\MakeSkillLink}[1]{%
-  #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Skill!#1}%
+% #1 Normal Skill
+% #2 Optional, qualifier for skill EG Language Common (vs the actual skill which is Language.)
+\NewDocumentCommand{\MakeSkillLink}{m g}{%
+  #1 \IfNoValueTF{#2}{}{(#2) }(P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Skill!#1}%
 }
 
 % MakeSkillLink: display text, link to page of the anchor (Perk category)
