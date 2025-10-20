@@ -1,6 +1,10 @@
 \documentclass[12pt]{article}
 \usepackage[a4paper, margin=1.5cm]{geometry}
 
+\usepackage{xfp} % in preamble
+\usepackage{graphicx}
+
+
 \input{_Preamble}
 
 % This is soft defined in the _chapterHeader as 0 and is then referenced
@@ -8,6 +12,14 @@
 % and end doc to allow the main chapters (at the same level as main)
 % to be done as tex files in their own right.
 \newcommand{\inmain}{1} % inform chapters they are included in main doc
+
+\newcommand{\CreateTextImage}[1]{%
+  \newlength{\remainingSpace}%
+  \setlength{\remainingSpace}{\dimexpr\pagegoal-\pagetotal\relax}%
+  .{\textbackslash}Create-TextImage.ps1 -Text "#1" -Width \fpeval{round(\the\columnwidth)} -Height \fpeval{round(\the\remainingSpace)} -Filename ".{\textbackslash}#1.png"%
+}
+
+
 
 \begin{document}
 %%-------------------------------------------------------------------------
@@ -66,6 +78,14 @@ Racial Perks
 \item Base Movement: 5
 \end{itemize}
 Gods Worshipped: Reliance, Zenos are mainly worshipped however some Drakien have been known to worship others in rare circumstances.
+%\the\pagegoal  % total page height
+%\the\pagetotal % height of content so far
+%\the\topskip
+%\the\footskip
+%\newlength{\remainingSpace}
+%\setlength{\remainingSpace}{\dimexpr\pagegoal-\pagetotal-\topskip-\footskip\relax}
+%\the\remainingSpace
+%\includegraphics[height=409pt,keepaspectratio]{resources/Drakien.png}
 \end{multicols}
 \newpage
 \begin{multicols}{2}
