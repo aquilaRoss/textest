@@ -5,6 +5,50 @@
 \RequirePackage{customPackages/mylinks} % for stripspaces
 \RequirePackage{xparse}                 % for \NewDocumentCommand and \IfNoValueTF
 
+% #1 Perk Name
+% #2 Any Pre-Requsits (Use "None" if there are none).
+% #3 Cost/Cost Per Level
+% #4 Effect
+% #5 through #8 Additional Effects.
+\NewDocumentCommand{\CreatePerk}{m m m m g g g g}{%
+  \par\noindent%
+  % Clean label name
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Perk!#1}%
+  % Display formatted name
+  {\textbf{\fontsize{14}{16}\selectfont #1}}\\%
+  \textbf{Pre-Requisites:} #2\\%
+  % YES, this should be on the optional, as it only has a level if there is more than one effect.
+  \IfNoValueTF{#5}{\textbf{Effect:}}{\textbf{Level 1 Effect:}} #4\\%
+  % Optional Levels will go here.
+  \IfNoValueTF{#5}{}{\textbf{Level 2 Effect:} #5\\}%
+  \IfNoValueTF{#6}{}{\textbf{Level 3 Effect:} #6\\}%
+  \IfNoValueTF{#7}{}{\textbf{Level 4 Effect:} #7\\}%
+  \IfNoValueTF{#8}{}{\textbf{Level 5 Effect:} #8\\}%
+  % not optional, but changes based on the optionals and is always last
+  \IfNoValueTF{#5}{\textbf{Cost:}}{\textbf{Cost Per Level:}} #3\\%
+}
+
+% #1 Flaw Name
+% #2 Any Pre-Requsits (Use "None" if there are none).
+% #3 Cost
+% #4 Effect
+\NewDocumentCommand{\CreateFlaw}{m m m m}{%
+  \par\noindent%
+  % Clean label name
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Flaw!#1}%
+  % Display formatted name
+  {\textbf{\fontsize{14}{16}\selectfont #1}}\\%
+  \textbf{Pre-Requisites:} #2\\%
+  \textbf{Effect:} #4\\%
+  \textbf{Cost:} #3\\%
+}
+
 \newcommand{\FeatureName}[2]{%
   \par
   % Clean label name
@@ -14,29 +58,4 @@
   \index{#2!#1}%
   % Display formatted name
   {\textbf{\fontsize{14}{16}\selectfont #1}}\\%
-}
-
-\newcommand{\PerkName}[1]{\FeatureName{#1}{Perk}}
-\newcommand{\FlawName}[1]{\FeatureName{#1}{Flaw}}
-
-\newcommand{\Prereq}[1]{%
-  \textbf{Pre-Requisites:} #1\\%
-}
-
-% Optional Second Parameter changes it from
-% Effect: effect goes here
-% to
-% Level X Effect: effect goes here
-\NewDocumentCommand{\Effect}{m g}{%
-  \textbf{%
-    \IfNoValueTF{#2}{Effect:}{Level #2 Effect:}%
-  } #1\\%
-}
-
-\newcommand{\Cost}[1]{%
-  \textbf{Cost:} #1\\%
-}
-
-\newcommand{\CostPerLevel}[1]{%
-  \textbf{Cost Per Level:} #1\\%
 }
