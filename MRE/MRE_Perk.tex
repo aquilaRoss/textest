@@ -57,81 +57,71 @@
   \MakeSkillAnchor{#1} & #2 & #3 \\%
 }
 
-\newcommand{\MakePerkAnchor}[1]{%
-  \edef\tempa{\detokenize{#1}}%
-  \edef\anchorname{\expandafter\stripspaces\tempa}%
-  \label{\anchorname}%
-  \index{Perk!#1}#1%
-}
-
 \newcommand{\MakePerkLink}[1]{%
   #1 (P.\pageref{\expandafter\stripspaces\detokenize{#1}})\index{Perk!#1}%
 }
 
-\newcommand{\PerkName}[1]{%
-  \subsection*{\MakePerkAnchor{#1}}%
-}
-
-\newcommand{\PerkPrereq}[1]{%
-  \textbf{Pre-Requisites:} #1\\%
-}
-
-% Optional Second Parameter changes it from
-% Effect: effect goes here
-% to
-% Level X Effect: effect goes here
-\NewDocumentCommand{\PerkEffect}{m g}{%
-  \textbf{%
-    \IfNoValueTF{#2}{Effect:}{Level #2 Effect:}%
-  } #1\\%
-}
-
-\newcommand{\PerkBaseCost}[1]{%
-  \textbf{Cost:} #1\\%
-}
-
-\newcommand{\PerkCostPerLevel}[1]{%
-  \textbf{Cost Per Level:} #1\\%
+% #1 Perk Name
+% #2 Any Pre-Requsits (Use "None" if there are none).
+% #3 Cost/Cost Per Level
+% #4 Effect
+% #5 Additional Effects.
+\NewDocumentCommand{\CreatePerk}{m m m m g g g}{%
+  \par\noindent%
+  % Clean label name
+  \edef\tempa{\detokenize{#1}}%
+  \edef\anchorname{\expandafter\stripspaces\tempa}%
+  \label{\anchorname}%
+  \index{Perk!#1}%
+  % Display formatted name
+  {\textbf{\fontsize{14}{16}\selectfont #1}}\\%
+  \textbf{Pre-Requisites:} #2\\%
+  % YES, this should be on the optional, as it only has a level if there is more than one effect.
+  \IfNoValueTF{#5}{\textbf{Effect:}}{\textbf{Level 1 Effect:}} #4\\%
+  % Optional Levels will go here.
+  \IfNoValueTF{#5}{}{\textbf{Level 2 Effect:} #5\\}%
+  \IfNoValueTF{#6}{}{\textbf{Level 3 Effect:} #6\\}%
+  \IfNoValueTF{#7}{}{\textbf{Level 4 Effect:} #7\\}%
+  % not optional, but changes based on the optionals and is always last
+  \IfNoValueTF{#5}{\textbf{Cost:}}{\textbf{Cost Per Level:}} #3\\%
 }
 
 \begin{document}
 
-\section{Perks}
-\begin{multicols}{2}
-%
-\PerkName{Martial Mastery}
-\PerkPrereq{\MakeSkillLink{Melee Weapons} 6 (+2 per Level). \MakePerkLink{Toughness}}
-\PerkEffect{+1 Damage with \MakeSkillLink{Melee Weapons}}{1}
-\PerkEffect{+1 Parry bonus}{2}
-\PerkEffect{May make an extra attack once per round.}{3}
-\PerkCostPerLevel{5}
-%
-\PerkName{Night Stalker}
-\PerkPrereq{\MakeSkillLink{Stealth} 6, Dexterity 6}
-\PerkEffect{Gain +2 to \MakeSkillLink{Stealth} tests made in darkness.}
-\PerkBaseCost{4}
-%
-\PerkName{Sharpshooter}
-\PerkPrereq{\MakeSkillLink{Firearms} 8, Perception 7}
-\PerkEffect{Ignore -2 penalty for long-range attacks.}
-\PerkBaseCost{6}%
-%
-\PerkName{Second Wind}
-\PerkPrereq{None}
-\PerkEffect{Once per combat, recover 10 percent of max HP as a free action.}
-\PerkBaseCost{4}%
-%
-\PerkName{Toughness}
-\PerkPrereq{Strength 5}
-\PerkEffect{Gain +2 HP}
-\PerkBaseCost{3}%
-%
-\PerkName{Weapon Focus (Melee)}
-\PerkPrereq{Any Melee Skill at 6}
-\PerkEffect{+1 to attack rolls with chosen melee weapon.}
-\PerkBaseCost{4}%
-%
-
+\section{Perks}%
+\begin{multicols}{2}%
+\CreatePerk
+  {Martial Mastery} % #1 Perk Name
+  {\MakeSkillLink{Melee Weapons} 6 (+2 per Level). \MakePerkLink{Toughness}} % #2 Prereqs
+  {5} % #3 Cost Per Level
+  {+1 Damage with \MakeSkillLink{Melee Weapons}} % #4 Effect (Level 1)
+  {+1 Parry bonus} % #5 Level 2 Effect
+  {May make an extra attack once per round.} % #6 Level 3 Effect
+\CreatePerk
+  {Night Stalker} % #1 Perk Name
+  {\MakeSkillLink{Stealth} 6, Dexterity 6} % #2 Prereqs
+  {4} % #3 Cost
+  {Gain +2 to \MakeSkillLink{Stealth} tests made in darkness.} % #4 Effect
+\CreatePerk
+  {Sharpshooter} % #1
+  {\MakeSkillLink{Firearms} 8, Perception 7} % #2
+  {6} % #3
+  {Ignore -2 penalty for long-range attacks.} % #4
+\CreatePerk
+  {Second Wind} % #1
+  {None} % #2
+  {4} % #3
+  {Once per combat, recover 10 percent of max HP as a free action.} % #4
+\CreatePerk
+  {Toughness} % #1
+  {Strength 5} % #2
+  {3} % #3
+  {Gain +2 HP} % #4
+\CreatePerk
+  {Weapon Focus (Melee)} % #1
+  {Any Melee Skill at 6} % #2
+  {4} % #3
+  {+1 to attack rolls with chosen melee weapon.} % #4
 \end{multicols}
 \newpage
 

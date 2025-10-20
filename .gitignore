@@ -1,1 +1,7 @@
 build/
+MRE/*.aux
+MRE/*.idx
+MRE/*.log
+MRE/*.out
+MRE/*.pdf
+MRE/*.gz
