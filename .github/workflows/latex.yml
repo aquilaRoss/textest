@@ -55,19 +55,21 @@ jobs:
 
       - name: Generate placeholder image
         run: |
+          cd MRE
           convert -size 400x300 xc:white \
                   -stroke black -fill none -draw "rectangle 0,0 399,299" \
                   -gravity center -pointsize 24 -fill black -annotate 0 "TEST" \
-                  MRE/placeholder.png
+                  placeholder.png
 
       - name: Generate placeholder images
         run: |
+          cd MRE
           while IFS=, read -r name width height filename; do
             convert -size "${width}x${height}" xc:white \
               -stroke black -fill none -draw "rectangle 0,0 $((width-1)),$((height-1))" \
               -gravity center -pointsize 24 -fill black -annotate 0 "$name" \
-              "MRE/$filename"
-          done < MRE/missing_images.csv
+              "$filename"
+          done < missing_images.csv
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
