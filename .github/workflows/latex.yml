@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ImageMagick
+        run: sudo apt update && sudo apt install -y imagemagick
+
       - name: Compile LaTeX - main
         uses: xu-cheng/latex-action@v3
         with:
@@ -44,15 +47,6 @@ jobs:
           root_file: MRE/MRE_Perk.tex
           work_in_root_file_dir: true
 
-      - name: Compile LaTeX - Placeholder for Image MRE
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: MRE/MRE_PlaceholderImages.tex
-          work_in_root_file_dir: true
-
-      - name: Install ImageMagick
-        run: sudo apt update && sudo apt install -y imagemagick
-
       - name: Generate placeholder image
         run: |
           cd MRE
@@ -61,15 +55,47 @@ jobs:
                   -gravity center -pointsize 24 -fill black -annotate 0 "TEST" \
                   placeholder.png
 
-      - name: Generate placeholder images
+######################################################################
+      # Here we run it the first time
+      - name: Compile LaTeX - Placeholder for Image MRE
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: MRE/MRE_PlaceholderImages.tex
+          work_in_root_file_dir: true
+
+      # If the previous step generated a MRE/missing_images.csv
+      # Generate the Placeholders, rename the PDF and cleanup
+      - name: Handle missing images and generate placeholders
         run: |
-          cd MRE
-          while IFS=, read -r name width height filename; do
-            convert -size "${width}x${height}" xc:white \
-              -stroke black -fill none -draw "rectangle 0,0 $((width-1)),$((height-1))" \
-              -gravity center -pointsize 24 -fill black -annotate 0 "$name" \
-              "$filename"
-          done < missing_images.csv
+          if [ -f "MRE/missing_images.csv" ]; then
+            echo "Missing images file found — generating placeholders."
+
+            # Rename existing PDF
+            mv MRE/MRE_PlaceholderImages.pdf MRE/MRE_PlaceholderImages_before_placeholders.pdf
+
+            # Generate placeholder images
+            cd MRE
+            while IFS=, read -r name width height filename; do
+              convert -size "${width}x${height}" xc:white \
+                -stroke black -fill none -draw "rectangle 0,0 $((width-1)),$((height-1))" \
+                -gravity center -pointsize 24 -fill black -annotate 0 "$name" \
+                "$filename"
+            done < missing_images.csv
+
+            # Delete the CSV
+            rm missing_images.csv
+          else
+            echo "No missing images file found — skipping placeholder generation."
+          fi
+
+      # Now we do it again, this is a waste of time if the images exist, but it doesnt take long
+      - name: Compile LaTeX - Placeholder for Image MRE
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: MRE/MRE_PlaceholderImages.tex
+          work_in_root_file_dir: true
+######################################################################
+
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
