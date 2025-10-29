@@ -5,31 +5,38 @@
 \usepackage{lipsum}
 \usepackage{tikz}
 \usepackage{graphicx}
+\usepackage{etoolbox}
 
 % for the fillspacewithplaceholder command
 \newlength{\remainingheight}%
 
-% Output file for the image creation commands
-\newwrite\cmdfile
-\immediate\openout\cmdfile=missing_images.csv
-
-% Make sure the file is closed.
-\AtEndDocument{\immediate\closeout\cmdfile}
-
 \newcommand{\drawimage}[2][90]{%
-  \par % force vertical mode
-  \setlength{\remainingheight}{\dimexpr (\pagegoal-\pagetotal)*#1/100\relax}%
-%
-  \immediate\write\cmdfile{#2,\fpeval{round(\the\columnwidth)},\fpeval{round(\the\remainingheight)},#2.png}%
-%
-  \begin{center}%
-  \begin{tikzpicture}%
-    % Draw rectangle using stored height
-    \draw[thick] (0,0) rectangle (\columnwidth,\remainingheight);%
-    % Place node in the center
-    \node at (0.5\columnwidth,0.5\remainingheight) {Width = \the\columnwidth, Height = \the\remainingheight};%
-  \end{tikzpicture}%
-  \end{center}%
+    \IfFileExists{#2.png}{%
+        % Image exists, just draw it
+        \includegraphics{#2.png}%
+    }{%
+        % Image does NOT exist
+        \par % force vertical mode
+        \setlength{\remainingheight}{\dimexpr (\pagegoal-\pagetotal)*#1/100\relax}%
+        %
+        % Conditionally create CSV file/write stream
+        \ifcsundef{cmdfile}{%
+            \newwrite\cmdfile
+            \immediate\openout\cmdfile=missing_images.csv
+            \AtEndDocument{\immediate\closeout\cmdfile}%
+        }{}%
+        %
+        % Write to CSV
+        \immediate\write\cmdfile{#2,\fpeval{round(\the\columnwidth)},\fpeval{round(\the\remainingheight)},#2.png}%
+        %
+        % Draw placeholder rectangle
+        \begin{center}%
+            \begin{tikzpicture}%
+                \draw[thick] (0,0) rectangle (\columnwidth,\remainingheight);%
+                \node at (0.5\columnwidth,0.5\remainingheight) {Width = \the\columnwidth, Height = \the\remainingheight};%
+            \end{tikzpicture}%
+        \end{center}%
+    }%
 }
 
 \begin{document}
@@ -44,8 +51,8 @@
 \newpage
 
 \section*{Single Column, LOADS of text.}
-\lipsum[1-8]
-\drawimage{SingleCol8Para}
+\lipsum[1-9]
+\drawimage{SingleCol9Para}
 \newpage
 
 \section*{Dual Column, "good" amount of text.}
