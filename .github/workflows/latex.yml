@@ -50,6 +50,9 @@ jobs:
           root_file: MRE/MRE_PlaceholderImages.tex
           work_in_root_file_dir: true
 
+      - name: Install ImageMagick
+        run: sudo apt update && sudo apt install -y imagemagick
+
       - name: Generate placeholder image
         run: |
           convert -size 400x300 xc:white \
