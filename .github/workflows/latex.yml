@@ -30,16 +30,19 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: MRE/MRE_AnchorLink.tex
+          work_in_root_file_dir: true
         
       - name: Compile LaTeX - Skill MRE
         uses: xu-cheng/latex-action@v3
         with:
           root_file: MRE/MRE_SkillTable.tex
+          work_in_root_file_dir: true
         
       - name: Compile LaTeX - Perk MRE
         uses: xu-cheng/latex-action@v3
         with:
           root_file: MRE/MRE_Perk.tex
+          work_in_root_file_dir: true
 
       - name: Compile LaTeX - Placeholder for Image MRE
         uses: xu-cheng/latex-action@v3
