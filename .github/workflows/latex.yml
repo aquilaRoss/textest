@@ -51,8 +51,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pdfs
-          path: '*.pdf'
-      
+          path: |
+            *.pdf
+            MRE/*.pdf
+
       - name: Upload logs
         uses: actions/upload-artifact@v4
         with:
