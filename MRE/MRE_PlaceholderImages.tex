@@ -9,9 +9,19 @@
 % for the fillspacewithplaceholder command
 \newlength{\remainingheight}%
 
+% Output file for the image creation commands
+\newwrite\cmdfile
+\immediate\openout\cmdfile=commands.txt
+
+% Make sure the file is closed.
+\AtEndDocument{\immediate\closeout\cmdfile}
+
 \newcommand{\fillspacewithplaceholder}[1][90]{%
   \par % force vertical mode
   \setlength{\remainingheight}{\dimexpr (\pagegoal-\pagetotal)*#1/100\relax}%
+%
+  \immediate\write\cmdfile{.\string\Create-TextImage.ps1 -Text "testName" -Width \fpeval{round(\the\columnwidth)} -Height \fpeval{round(\the\remainingheight)} -Filename ".\string\testName.png"}%
+%
   \begin{center}%
   \begin{tikzpicture}%
     % Draw rectangle using stored height

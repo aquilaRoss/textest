@@ -62,7 +62,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: latex-logs
-          path: '*.log'
+          path: |
+            *.log
+            MRE/*.log
+            *.txt
+            MRE/*.txt
 
       - name: Check for undefined references
         run: |
