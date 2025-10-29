@@ -11,16 +11,16 @@
 
 % Output file for the image creation commands
 \newwrite\cmdfile
-\immediate\openout\cmdfile=commands.txt
+\immediate\openout\cmdfile=missing_images.csv
 
 % Make sure the file is closed.
 \AtEndDocument{\immediate\closeout\cmdfile}
 
-\newcommand{\fillspacewithplaceholder}[1][90]{%
+\newcommand{\drawimage}[2][90]{%
   \par % force vertical mode
   \setlength{\remainingheight}{\dimexpr (\pagegoal-\pagetotal)*#1/100\relax}%
 %
-  \immediate\write\cmdfile{.\string\Create-TextImage.ps1 -Text "testName" -Width \fpeval{round(\the\columnwidth)} -Height \fpeval{round(\the\remainingheight)} -Filename ".\string\testName.png"}%
+  \immediate\write\cmdfile{#2,\fpeval{round(\the\columnwidth)},\fpeval{round(\the\remainingheight)},#2.png}%
 %
   \begin{center}%
   \begin{tikzpicture}%
@@ -35,23 +35,23 @@
 \begin{document}
 \section*{Single Column, A Little text.}
 \lipsum[1]
-\fillspacewithplaceholder
+\drawimage{SingleCol1Para}
 \newpage
 
 \section*{Single Column, some text.}
 \lipsum[1-4]
-\fillspacewithplaceholder
+\drawimage{SingleCol4Para}
 \newpage
 
 \section*{Single Column, LOADS of text.}
 \lipsum[1-8]
-\fillspacewithplaceholder
+\drawimage{SingleCol8Para}
 \newpage
 
 \section*{Dual Column, "good" amount of text.}
 \begin{multicols}{2}
 \lipsum[1-5]
-\fillspacewithplaceholder
+\drawimage{DualCol5Para}
 \end{multicols}
 \newpage
 
@@ -83,7 +83,7 @@
 \IfFileExists{nonExistantImage.png}{%
   \includegraphics[width=0.5\textwidth]{nonExistantImage.png}%
 }{%
-  \fillspacewithplaceholder
+  \drawimage{FileInteractionTest}
 }
 \end{multicols}
 \newpage
