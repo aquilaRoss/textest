@@ -41,6 +41,11 @@ jobs:
         with:
           root_file: MRE/MRE_Perk.tex
 
+      - name: Compile LaTeX - Placeholder for Image MRE
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: MRE/MRE_PlaceholderImages.tex
+
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
