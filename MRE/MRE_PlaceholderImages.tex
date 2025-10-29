@@ -2,12 +2,13 @@
 \usepackage[a4paper, margin=1.5cm]{geometry}
 
 \usepackage{multicol}
-\usepackage{lipsum}         % MRE ONLY
+\usepackage{lipsum}
+\usepackage{tikz}
 
 % for the fillspacewithplaceholder command
 \newlength{\remainingheight}%
 
-\newcommand{\fillspacewithplaceholder}[1][84]{%
+\newcommand{\fillspacewithplaceholder}[1][90]{%
   \par % force vertical mode
   \setlength{\remainingheight}{\dimexpr (\pagegoal-\pagetotal)*#1/100\relax}%
   \begin{center}%
@@ -15,14 +16,10 @@
     % Draw rectangle using stored height
     \draw[thick] (0,0) rectangle (\columnwidth,\remainingheight);%
     % Place node in the center
-    \node at (0.5\columnwidth,0.5\remainingheight) 
-      {Width = \the\columnwidth, Height = \the\remainingheight};%
+    \node at (0.5\columnwidth,0.5\remainingheight) {Width = \the\columnwidth, Height = \the\remainingheight};%
   \end{tikzpicture}%
   \end{center}%
 }
-
-
-\usepackage{tikz}
 
 \begin{document}
 \section*{Single Column, A Little text.}
@@ -46,15 +43,4 @@
 \fillspacewithplaceholder
 \end{multicols}
 
-%\section*{Dual Column, "bad" amount of text.}
-%\begin{multicols}{2}
-%\lipsum[1-2]
-%\fillspacewithplaceholder
-%\end{multicols}
-
-
-
-
-
-\newpage
 \end{document}
