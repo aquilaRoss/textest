@@ -4,6 +4,7 @@
 \usepackage{multicol}
 \usepackage{lipsum}
 \usepackage{tikz}
+\usepackage{graphicx}
 
 % for the fillspacewithplaceholder command
 \newlength{\remainingheight}%
@@ -42,5 +43,41 @@
 \lipsum[1-5]
 \fillspacewithplaceholder
 \end{multicols}
+\newpage
+
+\section*{Dual Column, "good" amount of text - Actual Image.}
+\begin{multicols}{2}
+\lipsum[1-5]
+\includegraphics{DualColLipsum1-5.png}%
+\end{multicols}
+\newpage
+
+\section*{File Interactions...}
+
+\IfFileExists{testImageL.png}{%
+  \includegraphics[width=0.5\textwidth]{testImageL.png}%
+}{%
+  \textbf{Image is missing!}%
+}
+
+\IfFileExists{nonExistantImage.png}{%
+  \includegraphics[width=0.5\textwidth]{nonExistantImage.png}%
+}{%
+  \textbf{Image is missing!}%
+}
+
+
+\section*{File Interactions...}
+\begin{multicols}{2}
+\lipsum[1-3]
+\IfFileExists{nonExistantImage.png}{%
+  \includegraphics[width=0.5\textwidth]{nonExistantImage.png}%
+}{%
+  \fillspacewithplaceholder
+}
+\end{multicols}
+\newpage
+
+
 
 \end{document}
