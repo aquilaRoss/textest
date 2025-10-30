@@ -1,0 +1,40 @@
+% drawimage.sty - Minimal helper for creating anchors and links
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{drawimage}[2025/10/30 Provides a Wrapper around includegraphics]
+
+
+\RequirePackage{tikz}         % for the place holder Rectangle and text
+\RequirePackage{graphicx}     % for includegraphics
+\RequirePackage{etoolbox}     % for ifcsundef
+
+% for the fillspacewithplaceholder command
+\newlength{\remainingheight}%
+
+\newcommand{\drawimage}[2][90]{%
+    \IfFileExists{#2.png}{%
+        % Image exists, just draw it
+        \includegraphics[width=\columnwidth,keepaspectratio]{#2.png}%
+    }{%
+        % Image does NOT exist
+        \par % force vertical mode
+        \setlength{\remainingheight}{\dimexpr (\pagegoal-\pagetotal)*#1/100\relax}%
+        %
+        % Conditionally create CSV file/write stream
+        \ifcsundef{cmdfile}{%
+            \newwrite\cmdfile
+            \immediate\openout\cmdfile=missing_images.csv
+            \AtEndDocument{\immediate\closeout\cmdfile}%
+        }{}%
+        %
+        % Write to CSV
+        \immediate\write\cmdfile{#2,\fpeval{round(\the\columnwidth)},\fpeval{round(\the\remainingheight)},#2.png}%
+        %
+        % Draw placeholder rectangle
+        \begin{center}%
+            \begin{tikzpicture}%
+                \draw[thick] (0,0) rectangle (\columnwidth,\remainingheight);%
+                \node at (0.5\columnwidth,0.5\remainingheight) {Width = \the\columnwidth, Height = \the\remainingheight};%
+            \end{tikzpicture}%
+        \end{center}%
+    }%
+}
