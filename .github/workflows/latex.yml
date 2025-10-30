@@ -19,6 +19,36 @@ jobs:
         with:
           root_file: _Main.tex
 
+      # If the previous step generated a missing_images.csv
+      # Generate the Placeholders, rename the PDF and cleanup
+      - name: Handle missing images and generate placeholders
+        run: |
+          if [ -f "missing_images.csv" ]; then
+            echo "Missing images file found — generating placeholders."
+
+            # Rename existing PDF
+            mv _main.pdf _main_before_placeholders.pdf
+
+            # Generate placeholder images
+            while IFS=, read -r name width height filename; do
+              convert -size "${width}x${height}" xc:white \
+                -stroke black -fill none -draw "rectangle 0,0 $((width-1)),$((height-1))" \
+                -gravity center -pointsize 24 -fill black -annotate 0 "$name" \
+                "$filename"
+            done < missing_images.csv
+
+            # Delete the CSV
+            rm missing_images.csv
+          else
+            echo "No missing images file found — skipping placeholder generation."
+          fi
+
+      # re-do it to pull in the placeholder images.
+      - name: Compile LaTeX - main
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: _Main.tex
+
       - name: Compile LaTeX - Skills
         uses: xu-cheng/latex-action@v3
         with:
