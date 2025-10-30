@@ -13,7 +13,7 @@
 \newcommand{\drawimage}[2][90]{%
     \IfFileExists{#2.png}{%
         % Image exists, just draw it
-        \includegraphics{#2.png}%
+        \includegraphics[width=\columnwidth,keepaspectratio]{#2.png}%
     }{%
         % Image does NOT exist
         \par % force vertical mode
@@ -65,7 +65,7 @@
 \section*{Dual Column, "good" amount of text - Actual Image.}
 \begin{multicols}{2}
 \lipsum[1-5]
-\includegraphics{DualColLipsum1-5.png}%
+\drawimage{DualColLipsum1-5}
 \end{multicols}
 \newpage
 
