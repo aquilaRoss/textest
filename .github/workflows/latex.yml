@@ -27,7 +27,7 @@ jobs:
             echo "Missing images file found — generating placeholders."
 
             # Rename existing PDF
-            mv _main.pdf _main_before_placeholders.pdf
+            mv _Main.pdf _Main_before_placeholders.pdf
 
             # Generate placeholder images
             while IFS=, read -r name width height filename; do
